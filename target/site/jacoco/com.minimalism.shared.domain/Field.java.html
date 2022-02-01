@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Field.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.domain</a> &gt; <span class="el_source">Field.java</span></div><h1>Field.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.domain;
+
+import java.util.Objects;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+
+import org.apache.commons.text.CaseUtils;
+
+public class Field {
+    private String name;
+    private String dataType;
+    private Object value;
+
+<span class="nc" id="L16">    public Field() {}</span>
+
+<span class="nc" id="L18">    public Field(String name, String dataType, Object value) {</span>
+<span class="nc" id="L19">        this.setName(name);</span>
+<span class="nc" id="L20">        this.setDataType(dataType);</span>
+<span class="nc" id="L21">        this.setValue(value);</span>
+<span class="nc" id="L22">    }</span>
+
+    public String getName() {
+<span class="nc" id="L25">        return name;</span>
+    }
+    public void setName(String name) {
+        //hyphenate words to camelCase
+<span class="nc" id="L29">        this.name = hyphensToCamelCase(name);</span>
+<span class="nc" id="L30">    }</span>
+    public String getDataType() {
+<span class="nc" id="L32">        return dataType;</span>
+    }
+    public void setDataType(String dataType) {
+        //to simple class names for supported types... Strings for rest
+<span class="nc" id="L36">        toSimpleClassNames(dataType);</span>
+<span class="nc" id="L37">        this.dataType = dataType;</span>
+<span class="nc" id="L38">    }</span>
+    public Object getValue() {
+<span class="nc" id="L40">        return value;</span>
+    }
+    public void setValue(Object value) {
+<span class="nc" id="L43">        this.value = value;</span>
+<span class="nc" id="L44">    }</span>
+
+<span class="nc" id="L46">    public JsonObject asJsonObject() {</span>
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        builder
+        .add(&quot;name&quot;, this.getName())
+        .add(&quot;type&quot;, this.getDataType());
+
+        switch(this.getDataType()) {
+            case &quot;String&quot;:
+                builder.add(&quot;value&quot;, this.getValue().toString());
+            break;
+            case &quot;Integer&quot;:
+                builder.add(&quot;value&quot;, ((Integer)this.getValue()));
+            break;
+            case &quot;Long&quot;:
+                builder.add(&quot;value&quot;, ((Long)this.getValue()));
+            break;
+            case &quot;Double&quot;:
+                builder.add(&quot;value&quot;, ((Double)this.getValue()));
+            break;
+            case &quot;Float&quot;:
+                builder.add(&quot;value&quot;, ((Float)this.getValue()));
+            break;
+            case &quot;Boolean&quot;:
+                builder.add(&quot;value&quot;, ((Boolean)this.getValue()));
+            break;
+            default:
+                builder.add(&quot;value&quot;, this.getValue().toString());
+            break;
+        }
+        return builder.build();
+    }
+
+    private String hyphensToCamelCase(String input) {
+        if(input.contains(&quot;-&quot;)) {
+<span class="nc" id="L80">            return CaseUtils.toCamelCase(input, false, new char[]{'-'});</span>
+        } else {
+            return input;
+        }
+    }
+
+    private String toSimpleClassNames(String input) {
+        var indexOflastDot = input.lastIndexOf(&quot;.&quot;);
+        String temp = null;
+        if(indexOflastDot &gt; 0) {
+            temp = input.substring(indexOflastDot);
+        } else {
+            temp = input;
+        }
+        if(!(temp.equalsIgnoreCase(&quot;string&quot;) 
+            || temp.equalsIgnoreCase(&quot;integer&quot;) || temp.equalsIgnoreCase(&quot;int&quot;) 
+            || temp.equalsIgnoreCase(&quot;long&quot;)
+            || temp.equalsIgnoreCase(&quot;double&quot;)
+            || temp.equalsIgnoreCase(&quot;float&quot;)
+            || temp.equalsIgnoreCase(&quot;boolean&quot;))) {
+                temp = &quot;string&quot;;
+        }
+        if(temp.equalsIgnoreCase(&quot;int&quot;)) temp = &quot;Integer&quot;;
+<span class="nc" id="L103">        return CaseUtils.toCamelCase(temp.toLowerCase(), true);</span>
+    }
+
+    private void setValueAsTargetType(Object value) {
+        try{
+<span class="nc bnc" id="L108" title="All 7 branches missed.">            switch(this.getDataType()) {</span>
+                case &quot;String&quot;:
+<span class="nc" id="L110">                this.value = value.toString();</span>
+                case &quot;Inetger&quot;:
+<span class="nc bnc" id="L112" title="All 2 branches missed.">                if(value instanceof java.lang.Integer) {</span>
+<span class="nc" id="L113">                    this.value = value;</span>
+<span class="nc" id="L114">                } else {</span>
+<span class="nc" id="L115">                    this.value = Integer.parseInt(value.toString());</span>
+                }
+<span class="nc" id="L117">                break;</span>
+                case &quot;Long&quot;:
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                if(value instanceof java.lang.Long) {</span>
+<span class="nc" id="L120">                    this.value = value;</span>
+<span class="nc" id="L121">                } else {</span>
+<span class="nc" id="L122">                    this.value = Long.parseLong(value.toString());</span>
+                }
+<span class="nc" id="L124">                break;</span>
+                case &quot;Float&quot;:
+<span class="nc bnc" id="L126" title="All 2 branches missed.">                if(value instanceof java.lang.Float) {</span>
+<span class="nc" id="L127">                    this.value = value;</span>
+<span class="nc" id="L128">                } else {</span>
+<span class="nc" id="L129">                    this.value = Float.parseFloat(value.toString());</span>
+                }
+<span class="nc" id="L131">                break;</span>
+                case &quot;Double&quot;:
+<span class="nc bnc" id="L133" title="All 2 branches missed.">                if(value instanceof java.lang.Double) {</span>
+<span class="nc" id="L134">                    this.value = value;</span>
+<span class="nc" id="L135">                } else {</span>
+<span class="nc" id="L136">                    this.value = Double.parseDouble(value.toString());</span>
+                }
+<span class="nc" id="L138">                break;</span>
+                case &quot;Boolean&quot;:
+<span class="nc bnc" id="L140" title="All 2 branches missed.">                if(value instanceof java.lang.Boolean) {</span>
+<span class="nc" id="L141">                    this.value = value;</span>
+<span class="nc" id="L142">                } else {</span>
+<span class="nc" id="L143">                    this.value = Boolean.parseBoolean(value.toString());</span>
+                }
+<span class="nc" id="L145">                break;</span>
+                default:
+<span class="nc" id="L147">                this.value = value.toString();</span>
+<span class="nc" id="L148">                this.setDataType(&quot;string&quot;);</span>
+                break;
+            }
+<span class="nc" id="L151">        } catch (NumberFormatException e) {</span>
+            // log error
+        }
+<span class="nc" id="L154">    }</span>
+
+    @Override
+    public int hashCode() {
+        // each field name must be unique...
+<span class="nc" id="L159">        return Objects.hash(this.getName(), this.getDataType());</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        if(other == null) return false;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if(!(other instanceof Field)) return false;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        return this.hashCode() == other.hashCode();</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

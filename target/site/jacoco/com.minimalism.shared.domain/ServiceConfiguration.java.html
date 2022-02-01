@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.domain</a> &gt; <span class="el_source">ServiceConfiguration.java</span></div><h1>ServiceConfiguration.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.domain;
+
+import com.minimalism.shared.common.AllEnums.DataSources;
+
+/**
+ * @author R Jairam Iyer
+ * &lt;p&gt;
+ * The &lt;em&gt;ServiceConfiguration&lt;/em&gt; class defines the configuration settings for a client. It 
+ * reads the &lt;i&gt; client.properties &lt;/i&gt; file located in the base directory for the client. &lt;i&gt; Each
+ * client has a dedicated directory structure, beginning with client's name &lt;/i&gt;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * The following are the service attributes that are used:
+ * &lt;ul&gt;
+ *  &lt;li&gt; service.operating.mode = balanced/single - indicates if the input file should be processed in a single thread or multi-threaded &lt;/li&gt; 
+ *  &lt;li&gt; threads.loading.factor = 1 - a number indicating the loading of the CPU. The number of available cores ismultiplied by this number to arrive at the target number of threads&lt;/li&gt;
+ *  &lt;li&gt; file.read.buffer.size = 1024 - the preferred size (in KiBytes) of the input buffers used by the service. Each thread will use the same sized byffer. &lt;/li&gt;
+ *  &lt;li&gt; service.output.endpoint = kafka - the service where the outout objects should be directed to. &lt;/li&gt;
+ *  &lt;li&gt; service.output.failover.endpoint = file_system - in case the outputend point is not available. &lt;/li&gt;
+ * &lt;/ul&gt;
+ * &lt;/p&gt;
+ * 
+ */
+public class ServiceConfiguration {
+    
+    private String client;
+    private String operatingMode;
+    private int threadsLoadingFactor;
+    private int fileReadBufferSize;
+    private DataSources outputEndpoint;
+    private DataSources outputFailoverEndpoint;
+
+<span class="fc" id="L33">    public ServiceConfiguration(String clientName) {</span>
+<span class="fc" id="L34">        this.client = clientName;</span>
+<span class="fc" id="L35">    }</span>
+
+    public String getClientName() {
+<span class="fc" id="L38">        return this.client;</span>
+    }
+
+    public String getOperatingMode() {
+<span class="nc" id="L42">        return this.operatingMode;</span>
+    }
+    public void setOperatingMode(String operatingMode) {
+<span class="fc" id="L45">        this.operatingMode = operatingMode;</span>
+<span class="fc" id="L46">    }</span>
+
+    public int getThreadsLoadingFactor() {
+<span class="nc" id="L49">        return this.threadsLoadingFactor;</span>
+    }
+    public void setThreadsLoadingFactor(String loadingFactor) {
+<span class="fc" id="L52">        this.threadsLoadingFactor = Integer.parseInt(loadingFactor);</span>
+<span class="fc" id="L53">    }</span>
+
+    public int getFileReadBufferSize() {
+<span class="nc" id="L56">        return this.fileReadBufferSize;</span>
+    }
+    public void setFileReadBufferSize(String bufferSize) {
+<span class="fc" id="L59">        this.fileReadBufferSize = Integer.parseInt(bufferSize);</span>
+<span class="fc" id="L60">    }</span>
+
+    public DataSources getOutputEndpoint() {
+<span class="nc" id="L63">        return this.outputEndpoint;</span>
+    }
+    public void setServiceOutputEndpoint(String endPoint) {
+<span class="fc" id="L66">        this.outputEndpoint = Enum.valueOf(DataSources.class, endPoint.toUpperCase());</span>
+<span class="fc" id="L67">    }</span>
+
+    public DataSources getOutputFailEndpoint() {
+<span class="nc" id="L70">        return this.outputFailoverEndpoint;</span>
+    }
+    public void setServiceOutputFailoverEndpoint(String failoverEndpoint) {
+<span class="fc" id="L73">        this.outputFailoverEndpoint = Enum.valueOf(DataSources.class, failoverEndpoint.toUpperCase());</span>
+<span class="fc" id="L74">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

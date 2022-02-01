@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AllEnums.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.common</a> &gt; <span class="el_source">AllEnums.java</span></div><h1>AllEnums.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.common;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Currency;
+
+<span class="nc" id="L8">public class AllEnums {</span>
+<span class="nc" id="L9">    public enum FileTypes{</span>
+<span class="nc" id="L10">        BIN,</span>
+<span class="nc" id="L11">        CSV,</span>
+<span class="nc" id="L12">        TEXT</span>
+    }
+
+<span class="nc" id="L15">    public enum RecordTypes {</span>
+<span class="nc" id="L16">        DELIMITED,</span>
+<span class="nc" id="L17">        FIXED_LENGTH,</span>
+<span class="nc" id="L18">        VARIABLE_LENGTH</span>
+    }
+
+<span class="nc" id="L21">    public enum DataTypes {</span>
+<span class="nc" id="L22">        BOOLEAN(0),</span>
+<span class="nc" id="L23">        BIGDECIMAL(1),</span>
+<span class="nc" id="L24">        LOCALDATE(2),</span>
+<span class="nc" id="L25">        EMAIL(3),</span>
+<span class="nc" id="L26">        FLOAT(4),</span>
+<span class="nc" id="L27">        INTEGER(5),</span>
+<span class="nc" id="L28">        LONG(6),</span>
+<span class="nc" id="L29">        DOUBLE(7),</span>
+<span class="nc" id="L30">        STRING(8),</span>
+<span class="nc" id="L31">        LOCALTIME(9);</span>
+        
+        private int dataType;
+<span class="nc" id="L34">        DataTypes(int dataType) {</span>
+<span class="nc" id="L35">            this.dataType = dataType;</span>
+<span class="nc" id="L36">        }</span>
+        public String getTypeName() {
+<span class="nc" id="L38">            return this.getType().getSimpleName();</span>
+        }
+
+        public Class&lt;?&gt; getType() {
+            Class&lt;?&gt; type;
+<span class="nc bnc" id="L43" title="All 11 branches missed.">            switch (this.dataType) {</span>
+                case 0:
+<span class="nc" id="L45">                type = Boolean.class;</span>
+<span class="nc" id="L46">                break;</span>
+                case 1:
+<span class="nc" id="L48">                type = BigDecimal.class;</span>
+<span class="nc" id="L49">                break;</span>
+                case 2:
+<span class="nc" id="L51">                type = LocalDate.class;</span>
+<span class="nc" id="L52">                break;</span>
+                case 3:
+<span class="nc" id="L54">                type = String.class;</span>
+<span class="nc" id="L55">                break;</span>
+                case 4:
+<span class="nc" id="L57">                type = Float.class;</span>
+<span class="nc" id="L58">                break;</span>
+                case 5:
+<span class="nc" id="L60">                type = Integer.class;</span>
+<span class="nc" id="L61">                break;</span>
+                case 6:
+<span class="nc" id="L63">                type = Long.class;</span>
+<span class="nc" id="L64">                break;</span>
+                case 7:
+<span class="nc" id="L66">                type = Double.class;</span>
+<span class="nc" id="L67">                break;</span>
+                case 8:
+<span class="nc" id="L69">                type = String.class;</span>
+<span class="nc" id="L70">                break;</span>
+                case 9:
+<span class="nc" id="L72">                type = LocalTime.class;</span>
+<span class="nc" id="L73">                break;</span>
+                default:
+<span class="nc" id="L75">                type = String.class;</span>
+                break;
+            }
+<span class="nc" id="L78">            return type;</span>
+        }
+    }
+
+<span class="nc" id="L82">    public enum Directories {</span>
+<span class="nc" id="L83">        INPUT_DATA,</span>
+<span class="nc" id="L84">        INPUT_DATA_CSV,</span>
+<span class="nc" id="L85">        INPUT_DATA_BIN,</span>
+<span class="nc" id="L86">        INPUT_DATA_DEFINITION,</span>
+<span class="nc" id="L87">        INSTRUMENTATION,</span>
+<span class="nc" id="L88">        OUTPUT_DATA,</span>
+<span class="nc" id="L89">        OUTPUT_DATA_CSV,</span>
+<span class="nc" id="L90">        OUTPUT_DATA_BIN,</span>
+<span class="nc" id="L91">        OUTPUT_DATA_DEFINITION,</span>
+<span class="nc" id="L92">        LOST_AND_FOUND,</span>
+<span class="nc" id="L93">        ARCHIVE,</span>
+<span class="nc" id="L94">        ARCHIVE_INPUT,</span>
+<span class="nc" id="L95">        ARCHIVE_INPUT_CSV,</span>
+<span class="nc" id="L96">        ARCHIVE_INPUT_BIN,</span>
+<span class="nc" id="L97">        ARCHIVE_OUTPUT,</span>
+<span class="nc" id="L98">        ARCHIVE_OUTPUT_CSV,</span>
+<span class="nc" id="L99">        ARCHIVE_OUTPUT_BIN</span>
+    }
+
+<span class="fc" id="L102">    public enum DataSourceTypes {</span>
+<span class="fc" id="L103">        AMQP,</span>
+<span class="fc" id="L104">        DATABASE,</span>
+<span class="fc" id="L105">        FILESYSTEM,</span>
+<span class="fc" id="L106">        PUBSUB,</span>
+<span class="fc" id="L107">        RESTFUL,</span>
+<span class="fc" id="L108">        WEBSOCKET</span>
+    }
+
+<span class="fc" id="L111">    public enum DataSources {</span>
+<span class="fc" id="L112">        ACTIVE_MQ(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L113">        BROKER_J(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L114">        RABBIT_MQ(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L115">        KAFKA(DataSourceTypes.PUBSUB),</span>
+<span class="fc" id="L116">        NTFS(DataSourceTypes.FILESYSTEM),</span>
+<span class="fc" id="L117">        UNIX_FS(DataSourceTypes.FILESYSTEM),</span>
+<span class="fc" id="L118">        GENERIC_REST(DataSourceTypes.RESTFUL),</span>
+<span class="fc" id="L119">        SPRING_BOOT(DataSourceTypes.RESTFUL),</span>
+<span class="fc" id="L120">        GENERIC_WEBSOCKET(DataSourceTypes.WEBSOCKET),</span>
+<span class="fc" id="L121">        SPRING_MVC(DataSourceTypes.WEBSOCKET),</span>
+<span class="fc" id="L122">        ASP(DataSourceTypes.RESTFUL),</span>
+        ;
+
+        private DataSourceTypes dataSourceType;
+
+<span class="fc" id="L127">        DataSources(DataSourceTypes dataSourceType) {</span>
+<span class="fc" id="L128">            this.dataSourceType = dataSourceType;</span>
+<span class="fc" id="L129">        }</span>
+
+        public DataSourceTypes getDataSourceType() {
+<span class="nc" id="L132">            return this.dataSourceType;</span>
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
