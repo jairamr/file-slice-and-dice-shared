@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientConfigHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.service</a> &gt; <span class="el_source">ClientConfigHelper.java</span></div><h1>ClientConfigHelper.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.service;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientConfigHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">file-slice-and-dice-shared</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.service</a> &gt; <span class="el_source">ClientConfigHelper.java</span></div><h1>ClientConfigHelper.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.service;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 import com.minimalism.shared.domain.ServiceConfiguration;
@@ -14,32 +13,26 @@ public class ClientConfigHelper {
     private static final String FILE_READ_BUFFER_SIZE = &quot;file.read.buffer.size&quot;;
     private static final String SERVICE_OUTPUT_ENDPOINT = &quot;service.output.endpoint&quot;;
     private static final String SERVICE_OUTPUT_FAILOVER_ENDPOINT = &quot;service.output.failover.endpoint&quot;;
-<span class="fc" id="L17">    private Properties serviceProperties = new Properties();</span>
+<span class="fc" id="L16">    private Properties serviceProperties = new Properties();</span>
 
-<span class="fc" id="L19">    public ClientConfigHelper(String clientName) throws IOException, NoSuchPathException, URISyntaxException {</span>
-        //var serviceRoot = AppConfigHelper.getInstance().getServiceRootDirectory();
-        
-        // Path clientRootPath = serviceRoot.resolve(clientName);
-        // if(!Files.exists(clientRootPath, LinkOption.NOFOLLOW_LINKS)) {
-        //     throw new NoSuchPathException(String.format(&quot;The directory structure for client: %s does not exist. Plese use 'setup' feature to establish the environment for the client.&quot;, clientName));
-        // }
-<span class="fc" id="L26">        try(var reader = new FileReader(</span>
-<span class="fc" id="L27">            FileSystemConfigHelper.getInstance()</span>
-<span class="fc" id="L28">            .getServiceClientRootDirectory(clientName).toString()</span>
-<span class="fc" id="L29">            .concat(&quot;\\service.properties&quot;))) {</span>
-<span class="fc" id="L30">                serviceProperties.load(reader);</span>
+<span class="fc" id="L18">    public ClientConfigHelper(String clientName) throws IOException, NoSuchPathException {</span>
+<span class="fc" id="L19">        try(var reader = new FileReader(</span>
+<span class="fc" id="L20">            FileSystemConfigHelper.getInstance()</span>
+<span class="fc" id="L21">            .getServiceClientRootDirectory(clientName).toString()</span>
+<span class="fc" id="L22">            .concat(&quot;\\service.properties&quot;))) {</span>
+<span class="fc" id="L23">                serviceProperties.load(reader);</span>
         }
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L25">    }</span>
 
     public ServiceConfiguration getServiceConfiguration(String forClient) {
-<span class="fc" id="L35">        ServiceConfiguration returnValue = new ServiceConfiguration(forClient);</span>
-<span class="fc" id="L36">        returnValue.setOperatingMode(serviceProperties.getProperty(SERVICE_OPERATING_MODE));</span>
-<span class="fc" id="L37">        returnValue.setThreadsLoadingFactor(serviceProperties.getProperty(THREADS_LOADING_FACTOR));</span>
-<span class="fc" id="L38">        returnValue.setFileReadBufferSize(serviceProperties.getProperty(FILE_READ_BUFFER_SIZE));</span>
-<span class="fc" id="L39">        returnValue.setServiceOutputEndpoint(serviceProperties.getProperty(SERVICE_OUTPUT_ENDPOINT));</span>
-<span class="fc" id="L40">        returnValue.setServiceOutputFailoverEndpoint(serviceProperties.getProperty(SERVICE_OUTPUT_FAILOVER_ENDPOINT));</span>
+<span class="fc" id="L28">        ServiceConfiguration returnValue = new ServiceConfiguration(forClient);</span>
+<span class="fc" id="L29">        returnValue.setOperatingMode(serviceProperties.getProperty(SERVICE_OPERATING_MODE));</span>
+<span class="fc" id="L30">        returnValue.setThreadsLoadingFactor(serviceProperties.getProperty(THREADS_LOADING_FACTOR));</span>
+<span class="fc" id="L31">        returnValue.setFileReadBufferSize(serviceProperties.getProperty(FILE_READ_BUFFER_SIZE));</span>
+<span class="fc" id="L32">        returnValue.setServiceOutputEndpoint(serviceProperties.getProperty(SERVICE_OUTPUT_ENDPOINT));</span>
+<span class="fc" id="L33">        returnValue.setServiceOutputFailoverEndpoint(serviceProperties.getProperty(SERVICE_OUTPUT_FAILOVER_ENDPOINT));</span>
         
-<span class="fc" id="L42">        return returnValue;</span>
+<span class="fc" id="L35">        return returnValue;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

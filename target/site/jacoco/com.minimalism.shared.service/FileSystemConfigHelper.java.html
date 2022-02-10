@@ -1,71 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileSystemConfigHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.service</a> &gt; <span class="el_source">FileSystemConfigHelper.java</span></div><h1>FileSystemConfigHelper.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.service;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileSystemConfigHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">file-slice-and-dice-shared</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.service</a> &gt; <span class="el_source">FileSystemConfigHelper.java</span></div><h1>FileSystemConfigHelper.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.service;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 import com.minimalism.shared.exceptions.NoSuchPathException;
 
 public class FileSystemConfigHelper {
-<span class="fc" id="L16">    private static String NO_SUCH_PATH_UNDER_ROOT_TEMPLATE = &quot;The file system with root at %s, does not have a directory for %s.&quot;;</span>
-<span class="fc" id="L17">    private static String NO_SUCH_DIRECTORY_TEMPLATE = &quot;The file system does not have a directory for %s.&quot;;</span>
+<span class="fc" id="L12">    private static String NO_SUCH_PATH_UNDER_ROOT_TEMPLATE = &quot;The file system with root at %s, does not have a directory for %s.&quot;;</span>
+<span class="fc" id="L13">    private static String NO_SUCH_DIRECTORY_TEMPLATE = &quot;The file system does not have a directory for %s.&quot;;</span>
     
-<span class="fc" id="L19">    private static String SERVICE_CLIENTS_DIRECTORY=&quot;service.clients.directory&quot;;</span>
-<span class="fc" id="L20">    private static String SERVICE_INPUT_DIRECTORY = &quot;service.input.directory&quot;;</span>
-<span class="fc" id="L21">    private static String SERVICE_OUTPUT_DIRECTORY = &quot;service.output.directory&quot;;</span>
-<span class="fc" id="L22">    private static String SERVICE_INPUT_DATA_CSV_DIRECTORY = &quot;service.input.data.csv.directory&quot;;</span>
-<span class="fc" id="L23">    private static String SERVICE_INPUT_DATA_BIN_DIRECTORY = &quot;service.input.data.bin.directory&quot;;</span>
-<span class="fc" id="L24">    private static String SERVICE_OUTPUT_DATA_CSV_DIRECTORY = &quot;service.output.data.csv.directory&quot;;</span>
-<span class="fc" id="L25">    private static String SERVICE_OUTPUT_DATA_BIN_DIRECTORY = &quot;service.output.data.bin.directory&quot;;</span>
-<span class="fc" id="L26">    private static String SERVICE_INPUT_DATA_DEFINITION_DIRECTORY = &quot;service.input.data.definition.directory&quot;;</span>
-<span class="fc" id="L27">    private static String SERVICE_OUTPUT_DATA_DEFINITION_DIRECTORY = &quot;service.output.data.definition.directory&quot;;</span>
-<span class="fc" id="L28">    private static String SERVICE_INSTRUMENTATION_DIRECTORY = &quot;service.instrumentation.directory&quot;;</span>
-<span class="fc" id="L29">    private static String SERVICE_ARCHIVE_DIRECTORY = &quot;service.archive.directory&quot;;</span>
-<span class="fc" id="L30">    private static String SERVICE_ARCHIVE_INPUT_DATA_DIRECTORY = &quot;service.archive.input.data.directory&quot;;</span>
-<span class="fc" id="L31">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_DIRECTORY = &quot;service.archive.output.data.directory&quot;;</span>
-<span class="fc" id="L32">    private static String SERVICE_ARCHIVE_INPUT_DATA_CSV_DIRECTORY = &quot;service.archive.input.data.csv.directory&quot;;</span>
-<span class="fc" id="L33">    private static String SERVICE_ARCHIVE_INPUT_DATA_BIN_DIRECTORY = &quot;service.archive.input.data.bin.directory&quot;;</span>
-<span class="fc" id="L34">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_CSV_DIRECTORY = &quot;service.archive.output.data.csv.directory&quot;;</span>
-<span class="fc" id="L35">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_BIN_DIRECTORY = &quot;service.archive.output.data.bin.directory&quot;;</span>
-<span class="fc" id="L36">    private static String SERVICE_LOST_AND_FOUND_DIRECTORY = &quot;service.lost.and.found.directory&quot;;</span>
+<span class="fc" id="L15">    private static String SERVICE_CLIENTS_DIRECTORY=&quot;service.clients.directory&quot;;</span>
+<span class="fc" id="L16">    private static String SERVICE_INPUT_DIRECTORY = &quot;service.input.directory&quot;;</span>
+<span class="fc" id="L17">    private static String SERVICE_OUTPUT_DIRECTORY = &quot;service.output.directory&quot;;</span>
+<span class="fc" id="L18">    private static String SERVICE_INPUT_DATA_CSV_DIRECTORY = &quot;service.input.data.csv.directory&quot;;</span>
+<span class="fc" id="L19">    private static String SERVICE_INPUT_DATA_BIN_DIRECTORY = &quot;service.input.data.bin.directory&quot;;</span>
+<span class="fc" id="L20">    private static String SERVICE_OUTPUT_DATA_CSV_DIRECTORY = &quot;service.output.data.csv.directory&quot;;</span>
+<span class="fc" id="L21">    private static String SERVICE_OUTPUT_DATA_BIN_DIRECTORY = &quot;service.output.data.bin.directory&quot;;</span>
+<span class="fc" id="L22">    private static String SERVICE_INPUT_DATA_DEFINITION_DIRECTORY = &quot;service.input.data.definition.directory&quot;;</span>
+<span class="fc" id="L23">    private static String SERVICE_OUTPUT_DATA_DEFINITION_DIRECTORY = &quot;service.output.data.definition.directory&quot;;</span>
+<span class="fc" id="L24">    private static String SERVICE_INSTRUMENTATION_DIRECTORY = &quot;service.instrumentation.directory&quot;;</span>
+<span class="fc" id="L25">    private static String SERVICE_ARCHIVE_DIRECTORY = &quot;service.archive.directory&quot;;</span>
+<span class="fc" id="L26">    private static String SERVICE_ARCHIVE_INPUT_DATA_DIRECTORY = &quot;service.archive.input.data.directory&quot;;</span>
+<span class="fc" id="L27">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_DIRECTORY = &quot;service.archive.output.data.directory&quot;;</span>
+<span class="fc" id="L28">    private static String SERVICE_ARCHIVE_INPUT_DATA_CSV_DIRECTORY = &quot;service.archive.input.data.csv.directory&quot;;</span>
+<span class="fc" id="L29">    private static String SERVICE_ARCHIVE_INPUT_DATA_BIN_DIRECTORY = &quot;service.archive.input.data.bin.directory&quot;;</span>
+<span class="fc" id="L30">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_CSV_DIRECTORY = &quot;service.archive.output.data.csv.directory&quot;;</span>
+<span class="fc" id="L31">    private static String SERVICE_ARCHIVE_OUTPUT_DATA_BIN_DIRECTORY = &quot;service.archive.output.data.bin.directory&quot;;</span>
+<span class="fc" id="L32">    private static String SERVICE_LOST_AND_FOUND_DIRECTORY = &quot;service.lost.and.found.directory&quot;;</span>
 
     private static FileSystemConfigHelper instance;
-<span class="fc" id="L39">    private static Properties fileSystemConfigProperties = new Properties();</span>
+<span class="fc" id="L35">    private static Properties fileSystemConfigProperties = new Properties();</span>
     
-<span class="fc" id="L41">    private FileSystemConfigHelper() throws IOException {</span>
-        //var basePath = Paths.get(&quot;.&quot;).toAbsolutePath();
-        //var toPropertiesFile = basePath.resolve(&quot;src/main/resources/filesystem.properties&quot;);
-        //try(var reader = new FileReader(toPropertiesFile.toString())) {
-<span class="fc" id="L45">        fileSystemConfigProperties.load(getClass().getClassLoader().getResourceAsStream(&quot;filesystem.properties&quot;));</span>
-<span class="fc" id="L46">    }</span>
+<span class="fc" id="L37">    private FileSystemConfigHelper() throws IOException {</span>
+<span class="fc" id="L38">        fileSystemConfigProperties.load(getClass().getClassLoader().getResourceAsStream(&quot;filesystem.properties&quot;));</span>
+<span class="fc" id="L39">    }</span>
     /** 
      * @return FileSystemConfigHelper
      * @throws IOException
      */
     public static synchronized FileSystemConfigHelper getInstance() throws IOException {
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        if(instance == null) {</span>
-<span class="fc" id="L53">            instance = new FileSystemConfigHelper();</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if(instance == null) {</span>
+<span class="fc" id="L46">            instance = new FileSystemConfigHelper();</span>
         }
-<span class="fc" id="L55">        return instance;</span>
+<span class="fc" id="L48">        return instance;</span>
     }
+
     public String getServiceClientsDirectoryName() {
-<span class="fc" id="L58">        return fileSystemConfigProperties.getProperty(SERVICE_CLIENTS_DIRECTORY);</span>
+<span class="fc" id="L52">        return fileSystemConfigProperties.getProperty(SERVICE_CLIENTS_DIRECTORY);</span>
     }
+
     public Path getServiceClientsDirectory() throws IOException, NoSuchPathException {
-<span class="fc" id="L61">        Path serviceRootPath = AppConfigHelper.getInstance().getServiceRootDirectory();</span>
-<span class="fc" id="L62">        Path clients = serviceRootPath</span>
-<span class="fc" id="L63">        .resolve(fileSystemConfigProperties.getProperty(SERVICE_CLIENTS_DIRECTORY));</span>
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if(!Files.exists(clients, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L65">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, serviceRootPath.toString(), &quot;clients&quot;));</span>
+<span class="fc" id="L56">        Path serviceRootPath = AppConfigHelper.getInstance().getServiceRootDirectory();</span>
+<span class="fc" id="L57">        Path clients = serviceRootPath</span>
+<span class="fc" id="L58">        .resolve(fileSystemConfigProperties.getProperty(SERVICE_CLIENTS_DIRECTORY));</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        if(!Files.exists(clients, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L60">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, serviceRootPath.toString(), &quot;clients&quot;));</span>
         }
-<span class="fc" id="L67">        return clients;</span>
+<span class="fc" id="L62">        return clients;</span>
     }
+
     /** 
      * @param clientName
      * @return Path
@@ -73,18 +69,20 @@ public class FileSystemConfigHelper {
      * @throws NoSuchPathException
      */
     public Path getServiceClientRootDirectory(String clientName) throws IOException, NoSuchPathException {
-<span class="fc" id="L76">        Path clientRoot = getServiceClientsDirectory().resolve(clientName);</span>
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if(!Files.exists(clientRoot, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L78">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, clientRoot.toString(), clientName));</span>
+<span class="fc" id="L72">        Path clientRoot = getServiceClientsDirectory().resolve(clientName);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if(!Files.exists(clientRoot, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="fc" id="L74">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, clientRoot.toString(), clientName));</span>
         }
-<span class="fc" id="L80">        return clientRoot;</span>
+<span class="fc" id="L76">        return clientRoot;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDirectoryName() {
-<span class="fc" id="L86">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DIRECTORY);</span>
+<span class="fc" id="L83">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -92,23 +90,25 @@ public class FileSystemConfigHelper {
      * @throws IOException
      */
     public Path getServiceInputDirectory(String clientName) throws NoSuchPathException, IOException {
-<span class="fc" id="L95">        Path serviceRootPath = AppConfigHelper.getInstance().getServiceRootDirectory();</span>
-<span class="fc" id="L96">        Path clientRoot = getServiceClientsDirectory().resolve(clientName);</span>
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if(!Files.exists(clientRoot, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L98">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, serviceRootPath.toString(), clientName));</span>
+<span class="fc" id="L93">        Path serviceRootPath = AppConfigHelper.getInstance().getServiceRootDirectory();</span>
+<span class="fc" id="L94">        Path clientRoot = getServiceClientsDirectory().resolve(clientName);</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if(!Files.exists(clientRoot, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="fc" id="L96">            throw new NoSuchPathException(String.format(NO_SUCH_PATH_UNDER_ROOT_TEMPLATE, serviceRootPath.toString(), clientName));</span>
         }
-<span class="fc" id="L100">        Path inputDirectory = clientRoot.resolve(getServiceInputDirectoryName());</span>
-<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if(!Files.exists(inputDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L102">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDirectory));</span>
+<span class="fc" id="L98">        Path inputDirectory = clientRoot.resolve(getServiceInputDirectoryName());</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">        if(!Files.exists(inputDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L100">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDirectory));</span>
         }
-<span class="fc" id="L104">        return inputDirectory;</span>
+<span class="fc" id="L102">        return inputDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDirectoryName() {
-<span class="fc" id="L110">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DIRECTORY);</span>
+<span class="fc" id="L109">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -123,12 +123,14 @@ public class FileSystemConfigHelper {
         }
 <span class="fc" id="L124">        return outputDirectory;</span>
     }    
+    
     /** 
      * @return String
      */
     public String getServiceInputDataCSVDirectoryName() {
-<span class="fc" id="L130">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_CSV_DIRECTORY);</span>
+<span class="fc" id="L131">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_CSV_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -137,18 +139,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceInputDataCSVDirectory(String clientName) throws NoSuchPathException, IOException {
        
-<span class="fc" id="L140">        Path inputDataCSVDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataCSVDirectoryName());</span>
-<span class="pc bpc" id="L141" title="1 of 2 branches missed.">        if(!Files.exists(inputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L142">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataCSVDirectory));</span>
+<span class="fc" id="L142">        Path inputDataCSVDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataCSVDirectoryName());</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">        if(!Files.exists(inputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L144">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataCSVDirectory));</span>
         }
-<span class="fc" id="L144">        return inputDataCSVDirectory;</span>
+<span class="fc" id="L146">        return inputDataCSVDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDataBinDirectoryName() {
-<span class="fc" id="L150">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_BIN_DIRECTORY);</span>
+<span class="fc" id="L153">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_BIN_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -157,18 +161,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceInputDataBinDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L160">        Path inputDataBinDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataBinDirectoryName());</span>
-<span class="pc bpc" id="L161" title="1 of 2 branches missed.">        if(!Files.exists(inputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L162">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataBinDirectory));</span>
+<span class="fc" id="L164">        Path inputDataBinDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataBinDirectoryName());</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">        if(!Files.exists(inputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L166">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataBinDirectory));</span>
         }
-<span class="fc" id="L164">        return inputDataBinDirectory;</span>
+<span class="fc" id="L168">        return inputDataBinDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDataCSVDirectoryName() {
-<span class="nc" id="L170">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_CSV_DIRECTORY);</span>
+<span class="fc" id="L175">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_CSV_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -177,18 +183,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceOutputDataCSVDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="nc" id="L180">        Path outputDataCSVDirectory = getServiceOutputDirectory(clientName).resolve(getServiceOutputDataCSVDirectoryName());</span>
-<span class="nc bnc" id="L181" title="All 2 branches missed.">        if(!Files.exists(outputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L182">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataCSVDirectory));</span>
+<span class="fc" id="L186">        Path outputDataCSVDirectory = getServiceOutputDirectory(clientName).resolve(getServiceOutputDataCSVDirectoryName());</span>
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">        if(!Files.exists(outputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L188">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataCSVDirectory));</span>
         }
-<span class="nc" id="L184">        return outputDataCSVDirectory;</span>
+<span class="fc" id="L190">        return outputDataCSVDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDataBinDirectoryName() {
-<span class="nc" id="L190">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_BIN_DIRECTORY);</span>
+<span class="fc" id="L197">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_BIN_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -197,18 +205,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceOutputDataBinDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="nc" id="L200">        Path outputDataBinDirectory = getServiceOutputDirectory(clientName).resolve(getServiceOutputDataBinDirectoryName());</span>
-<span class="nc bnc" id="L201" title="All 2 branches missed.">        if(!Files.exists(outputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L202">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataBinDirectory));</span>
+<span class="fc" id="L208">        Path outputDataBinDirectory = getServiceOutputDirectory(clientName).resolve(getServiceOutputDataBinDirectoryName());</span>
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">        if(!Files.exists(outputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L210">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataBinDirectory));</span>
         }
-<span class="nc" id="L204">        return outputDataBinDirectory;</span>
+<span class="fc" id="L212">        return outputDataBinDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDataDefinitionDirectoryName() {
-<span class="fc" id="L210">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_DEFINITION_DIRECTORY);</span>
+<span class="fc" id="L219">        return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_DEFINITION_DIRECTORY);</span>
     }    
+    
     /** 
      * @param clientName
      * @return Path
@@ -217,18 +227,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceInputDataDefinitionDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L220">        Path inputDataDefinitionDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataDefinitionDirectoryName());</span>
-<span class="pc bpc" id="L221" title="1 of 2 branches missed.">        if(!Files.exists(inputDataDefinitionDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L222">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataDefinitionDirectory));</span>
+<span class="fc" id="L230">        Path inputDataDefinitionDirectory = getServiceInputDirectory(clientName).resolve(getServiceInputDataDefinitionDirectoryName());</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">        if(!Files.exists(inputDataDefinitionDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L232">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, inputDataDefinitionDirectory));</span>
         }
-<span class="fc" id="L224">        return inputDataDefinitionDirectory;</span>
+<span class="fc" id="L234">        return inputDataDefinitionDirectory;</span>
     }
+    
     /** 
-     * @return String
+    * @return String
      */
     public String getServiceOutputDataDefinitionDirectoryName() {
-<span class="fc" id="L230">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_DEFINITION_DIRECTORY);</span>
+<span class="fc" id="L241">        return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_DEFINITION_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -237,19 +249,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceOutputDataDefinitionDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L240">        Path outputDataDefinitionDirectory = getServiceOutputDirectory(clientName)</span>
-<span class="fc" id="L241">        .resolve(getServiceOutputDataDefinitionDirectoryName());</span>
-<span class="pc bpc" id="L242" title="1 of 2 branches missed.">        if(!Files.exists(outputDataDefinitionDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L243">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataDefinitionDirectory));</span>
+<span class="fc" id="L252">        Path outputDataDefinitionDirectory = getServiceOutputDirectory(clientName)</span>
+<span class="fc" id="L253">        .resolve(getServiceOutputDataDefinitionDirectoryName());</span>
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">        if(!Files.exists(outputDataDefinitionDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L255">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, outputDataDefinitionDirectory));</span>
         }
-<span class="fc" id="L245">        return outputDataDefinitionDirectory;</span>
+<span class="fc" id="L257">        return outputDataDefinitionDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceInstrumentationDirectoryName() {
-<span class="fc" id="L251">        return fileSystemConfigProperties.getProperty(SERVICE_INSTRUMENTATION_DIRECTORY);</span>
+<span class="fc" id="L264">        return fileSystemConfigProperties.getProperty(SERVICE_INSTRUMENTATION_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -258,19 +272,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceInstrumentationDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L261">        Path instrumentationDirectory = getServiceClientRootDirectory(clientName)</span>
-<span class="fc" id="L262">        .resolve(getServiceInstrumentationDirectoryName());</span>
-<span class="pc bpc" id="L263" title="1 of 2 branches missed.">        if(!Files.exists(instrumentationDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L264">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, instrumentationDirectory));</span>
+<span class="fc" id="L275">        Path instrumentationDirectory = getServiceClientRootDirectory(clientName)</span>
+<span class="fc" id="L276">        .resolve(getServiceInstrumentationDirectoryName());</span>
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">        if(!Files.exists(instrumentationDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L278">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, instrumentationDirectory));</span>
         }
-<span class="fc" id="L266">        return instrumentationDirectory;</span>
+<span class="fc" id="L280">        return instrumentationDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveDirectoryName() {
-<span class="fc" id="L272">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_DIRECTORY);</span>
+<span class="fc" id="L287">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -279,18 +295,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveDirectory(String clientName) throws NoSuchPathException, IOException {
 
-<span class="fc" id="L282">        Path archiveDirectory = getServiceClientRootDirectory(clientName).resolve(getServiceArchiveDirectoryName());</span>
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        if(!Files.exists(archiveDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L284">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveDirectory));</span>
+<span class="fc" id="L298">        Path archiveDirectory = getServiceClientRootDirectory(clientName).resolve(getServiceArchiveDirectoryName());</span>
+<span class="pc bpc" id="L299" title="1 of 2 branches missed.">        if(!Files.exists(archiveDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L300">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveDirectory));</span>
         }
-<span class="fc" id="L286">        return archiveDirectory;</span>
+<span class="fc" id="L302">        return archiveDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataDirectoryName() {
-<span class="fc" id="L292">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_DIRECTORY);</span>
+<span class="fc" id="L309">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -299,18 +317,20 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveInputDataDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L302">        Path archiveInputDataDirectory = getServiceArchiveDirectory(clientName).resolve(getServiceArchiveInputDataDirectoryName());</span>
-<span class="pc bpc" id="L303" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L304">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataDirectory));</span>
+<span class="fc" id="L320">        Path archiveInputDataDirectory = getServiceArchiveDirectory(clientName).resolve(getServiceArchiveInputDataDirectoryName());</span>
+<span class="pc bpc" id="L321" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L322">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataDirectory));</span>
         }
-<span class="fc" id="L306">        return archiveInputDataDirectory;</span>
+<span class="fc" id="L324">        return archiveInputDataDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataDirectoryName() {
-<span class="fc" id="L312">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_DIRECTORY);</span>
+<span class="fc" id="L331">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -319,19 +339,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveOutputDataDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L322">        Path archiveOutputDataDirectory = getServiceArchiveDirectory(clientName)</span>
-<span class="fc" id="L323">        .resolve(getServiceArchiveOutputDataDirectoryName());</span>
-<span class="pc bpc" id="L324" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L325">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataDirectory));</span>
+<span class="fc" id="L342">        Path archiveOutputDataDirectory = getServiceArchiveDirectory(clientName)</span>
+<span class="fc" id="L343">        .resolve(getServiceArchiveOutputDataDirectoryName());</span>
+<span class="pc bpc" id="L344" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L345">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataDirectory));</span>
         }
-<span class="fc" id="L327">        return archiveOutputDataDirectory;</span>
+<span class="fc" id="L347">        return archiveOutputDataDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataCSVDirectoryName() {
-<span class="fc" id="L333">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_CSV_DIRECTORY);</span>
+<span class="fc" id="L354">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_CSV_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -340,19 +362,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveInputDataCSVDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L343">        Path archiveInputDataCSVDirectory = getServiceArchiveInputDataDirectory(clientName)</span>
-<span class="fc" id="L344">                                            .resolve(getServiceArchiveInputDataCSVDirectoryName());</span>
-<span class="pc bpc" id="L345" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L346">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataCSVDirectory));</span>
+<span class="fc" id="L365">        Path archiveInputDataCSVDirectory = getServiceArchiveInputDataDirectory(clientName)</span>
+<span class="fc" id="L366">                                            .resolve(getServiceArchiveInputDataCSVDirectoryName());</span>
+<span class="pc bpc" id="L367" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L368">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataCSVDirectory));</span>
         }
-<span class="fc" id="L348">        return archiveInputDataCSVDirectory;</span>
+<span class="fc" id="L370">        return archiveInputDataCSVDirectory;</span>
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataBinDirectoryName() {
-<span class="fc" id="L354">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_BIN_DIRECTORY);</span>
+<span class="fc" id="L377">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_BIN_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -361,19 +385,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveInputDataBinDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L364">        Path archiveInputDataBinDirectory = getServiceArchiveInputDataDirectory(clientName)</span>
-<span class="fc" id="L365">                                        .resolve(getServiceArchiveInputDataBinDirectoryName());</span>
-<span class="pc bpc" id="L366" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L367">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataBinDirectory));</span>
+<span class="fc" id="L388">        Path archiveInputDataBinDirectory = getServiceArchiveInputDataDirectory(clientName)</span>
+<span class="fc" id="L389">                                        .resolve(getServiceArchiveInputDataBinDirectoryName());</span>
+<span class="pc bpc" id="L390" title="1 of 2 branches missed.">        if(!Files.exists(archiveInputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L391">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveInputDataBinDirectory));</span>
         }
-<span class="fc" id="L369">        return archiveInputDataBinDirectory;</span>
+<span class="fc" id="L393">        return archiveInputDataBinDirectory;</span>
     }  
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataCSVDirectoryName() {
-<span class="fc" id="L375">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_CSV_DIRECTORY);</span>
+<span class="fc" id="L400">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_CSV_DIRECTORY);</span>
     }    
+    
     /** 
      * @param clientName
      * @return Path
@@ -382,19 +408,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveOutputDataCSVDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L385">        Path archiveOutputDataCSVDirectory = getServiceArchiveOutputDataDirectory(clientName)</span>
-<span class="fc" id="L386">                                            .resolve(getServiceArchiveOutputDataCSVDirectoryName());</span>
-<span class="pc bpc" id="L387" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L388">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataCSVDirectory));</span>
+<span class="fc" id="L411">        Path archiveOutputDataCSVDirectory = getServiceArchiveOutputDataDirectory(clientName)</span>
+<span class="fc" id="L412">                                            .resolve(getServiceArchiveOutputDataCSVDirectoryName());</span>
+<span class="pc bpc" id="L413" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataCSVDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L414">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataCSVDirectory));</span>
         }
-<span class="fc" id="L390">        return archiveOutputDataCSVDirectory;</span>
+<span class="fc" id="L416">        return archiveOutputDataCSVDirectory;</span>
     }    
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataBinDirectoryName() {
-<span class="fc" id="L396">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_BIN_DIRECTORY);</span>
+<span class="fc" id="L423">        return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_BIN_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -403,19 +431,21 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceArchiveOutputDataBinDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L406">        Path archiveOutputDataBinDirectory = getServiceArchiveOutputDataDirectory(clientName)</span>
-<span class="fc" id="L407">                                            .resolve(getServiceArchiveOutputDataBinDirectoryName());</span>
-<span class="pc bpc" id="L408" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L409">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataBinDirectory));</span>
+<span class="fc" id="L434">        Path archiveOutputDataBinDirectory = getServiceArchiveOutputDataDirectory(clientName)</span>
+<span class="fc" id="L435">                                            .resolve(getServiceArchiveOutputDataBinDirectoryName());</span>
+<span class="pc bpc" id="L436" title="1 of 2 branches missed.">        if(!Files.exists(archiveOutputDataBinDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L437">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, archiveOutputDataBinDirectory));</span>
         }
-<span class="fc" id="L411">        return archiveOutputDataBinDirectory;</span>
+<span class="fc" id="L439">        return archiveOutputDataBinDirectory;</span>
     }    
+    
     /** 
      * @return String
      */
     public String getServiceLostAndFoundDirectoryName() {
-<span class="fc" id="L417">        return fileSystemConfigProperties.getProperty(SERVICE_LOST_AND_FOUND_DIRECTORY);</span>
+<span class="fc" id="L446">        return fileSystemConfigProperties.getProperty(SERVICE_LOST_AND_FOUND_DIRECTORY);</span>
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -424,12 +454,12 @@ public class FileSystemConfigHelper {
      */
     public Path getServiceLostAndFoundDirectory(String clientName) throws NoSuchPathException, IOException {
         
-<span class="fc" id="L427">        Path lostAndFoundDirectory = getServiceClientRootDirectory(clientName)</span>
-<span class="fc" id="L428">                                    .resolve(getServiceLostAndFoundDirectoryName());</span>
-<span class="pc bpc" id="L429" title="1 of 2 branches missed.">        if(!Files.exists(lostAndFoundDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
-<span class="nc" id="L430">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, lostAndFoundDirectory));</span>
+<span class="fc" id="L457">        Path lostAndFoundDirectory = getServiceClientRootDirectory(clientName)</span>
+<span class="fc" id="L458">                                    .resolve(getServiceLostAndFoundDirectoryName());</span>
+<span class="pc bpc" id="L459" title="1 of 2 branches missed.">        if(!Files.exists(lostAndFoundDirectory, LinkOption.NOFOLLOW_LINKS)) {</span>
+<span class="nc" id="L460">            throw new NoSuchPathException(String.format(NO_SUCH_DIRECTORY_TEMPLATE, lostAndFoundDirectory));</span>
         }
-<span class="fc" id="L432">        return lostAndFoundDirectory;</span>
+<span class="fc" id="L462">        return lostAndFoundDirectory;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

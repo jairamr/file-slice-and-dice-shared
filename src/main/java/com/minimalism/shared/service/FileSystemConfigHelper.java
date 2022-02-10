@@ -1,13 +1,9 @@
 package com.minimalism.shared.service;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 import com.minimalism.shared.exceptions.NoSuchPathException;
@@ -39,9 +35,6 @@ public class FileSystemConfigHelper {
     private static Properties fileSystemConfigProperties = new Properties();
     
     private FileSystemConfigHelper() throws IOException {
-        //var basePath = Paths.get(".").toAbsolutePath();
-        //var toPropertiesFile = basePath.resolve("src/main/resources/filesystem.properties");
-        //try(var reader = new FileReader(toPropertiesFile.toString())) {
         fileSystemConfigProperties.load(getClass().getClassLoader().getResourceAsStream("filesystem.properties"));
     }
     /** 
@@ -54,9 +47,11 @@ public class FileSystemConfigHelper {
         }
         return instance;
     }
+
     public String getServiceClientsDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_CLIENTS_DIRECTORY);
     }
+
     public Path getServiceClientsDirectory() throws IOException, NoSuchPathException {
         Path serviceRootPath = AppConfigHelper.getInstance().getServiceRootDirectory();
         Path clients = serviceRootPath
@@ -66,6 +61,7 @@ public class FileSystemConfigHelper {
         }
         return clients;
     }
+
     /** 
      * @param clientName
      * @return Path
@@ -79,12 +75,14 @@ public class FileSystemConfigHelper {
         }
         return clientRoot;
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -103,12 +101,14 @@ public class FileSystemConfigHelper {
         }
         return inputDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -123,12 +123,14 @@ public class FileSystemConfigHelper {
         }
         return outputDirectory;
     }    
+    
     /** 
      * @return String
      */
     public String getServiceInputDataCSVDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_CSV_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -143,12 +145,14 @@ public class FileSystemConfigHelper {
         }
         return inputDataCSVDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDataBinDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_BIN_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -163,12 +167,14 @@ public class FileSystemConfigHelper {
         }
         return inputDataBinDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDataCSVDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_CSV_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -183,12 +189,14 @@ public class FileSystemConfigHelper {
         }
         return outputDataCSVDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceOutputDataBinDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_BIN_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -203,12 +211,14 @@ public class FileSystemConfigHelper {
         }
         return outputDataBinDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceInputDataDefinitionDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_INPUT_DATA_DEFINITION_DIRECTORY);
     }    
+    
     /** 
      * @param clientName
      * @return Path
@@ -223,12 +233,14 @@ public class FileSystemConfigHelper {
         }
         return inputDataDefinitionDirectory;
     }
+    
     /** 
-     * @return String
+    * @return String
      */
     public String getServiceOutputDataDefinitionDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_OUTPUT_DATA_DEFINITION_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -244,12 +256,14 @@ public class FileSystemConfigHelper {
         }
         return outputDataDefinitionDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceInstrumentationDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_INSTRUMENTATION_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -265,12 +279,14 @@ public class FileSystemConfigHelper {
         }
         return instrumentationDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -285,12 +301,14 @@ public class FileSystemConfigHelper {
         }
         return archiveDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -305,12 +323,14 @@ public class FileSystemConfigHelper {
         }
         return archiveInputDataDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -326,12 +346,14 @@ public class FileSystemConfigHelper {
         }
         return archiveOutputDataDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataCSVDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_CSV_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -347,12 +369,14 @@ public class FileSystemConfigHelper {
         }
         return archiveInputDataCSVDirectory;
     }
+    
     /** 
      * @return String
      */
     public String getServiceArchiveInputDataBinDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_INPUT_DATA_BIN_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -368,12 +392,14 @@ public class FileSystemConfigHelper {
         }
         return archiveInputDataBinDirectory;
     }  
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataCSVDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_CSV_DIRECTORY);
     }    
+    
     /** 
      * @param clientName
      * @return Path
@@ -389,12 +415,14 @@ public class FileSystemConfigHelper {
         }
         return archiveOutputDataCSVDirectory;
     }    
+    
     /** 
      * @return String
      */
     public String getServiceArchiveOutputDataBinDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_ARCHIVE_OUTPUT_DATA_BIN_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path
@@ -410,12 +438,14 @@ public class FileSystemConfigHelper {
         }
         return archiveOutputDataBinDirectory;
     }    
+    
     /** 
      * @return String
      */
     public String getServiceLostAndFoundDirectoryName() {
         return fileSystemConfigProperties.getProperty(SERVICE_LOST_AND_FOUND_DIRECTORY);
     }
+    
     /** 
      * @param clientName
      * @return Path

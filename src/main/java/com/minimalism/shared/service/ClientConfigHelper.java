@@ -2,7 +2,6 @@ package com.minimalism.shared.service;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 import com.minimalism.shared.domain.ServiceConfiguration;
@@ -16,13 +15,7 @@ public class ClientConfigHelper {
     private static final String SERVICE_OUTPUT_FAILOVER_ENDPOINT = "service.output.failover.endpoint";
     private Properties serviceProperties = new Properties();
 
-    public ClientConfigHelper(String clientName) throws IOException, NoSuchPathException, URISyntaxException {
-        //var serviceRoot = AppConfigHelper.getInstance().getServiceRootDirectory();
-        
-        // Path clientRootPath = serviceRoot.resolve(clientName);
-        // if(!Files.exists(clientRootPath, LinkOption.NOFOLLOW_LINKS)) {
-        //     throw new NoSuchPathException(String.format("The directory structure for client: %s does not exist. Plese use 'setup' feature to establish the environment for the client.", clientName));
-        // }
+    public ClientConfigHelper(String clientName) throws IOException, NoSuchPathException {
         try(var reader = new FileReader(
             FileSystemConfigHelper.getInstance()
             .getServiceClientRootDirectory(clientName).toString()

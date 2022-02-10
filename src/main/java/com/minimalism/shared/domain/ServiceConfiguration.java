@@ -78,6 +78,7 @@ public class ServiceConfiguration {
     public DataSources getOutputFailEndpoint() {
         return this.outputFailoverEndpoint;
     }
+    
     public void setServiceOutputFailoverEndpoint(String failoverEndpoint) {
         this.outputFailoverEndpoint = Enum.valueOf(DataSources.class, failoverEndpoint.toUpperCase());
     }

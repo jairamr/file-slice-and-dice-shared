@@ -19,15 +19,15 @@ public class AllEnums {
 
     public enum DataTypes {
         BOOLEAN(0),
-        BIGDECIMAL(1),
-        LOCALDATE(2),
+        BIG_DECIMAL(1),
+        LOCAL_DATE(2),
         EMAIL(3),
         FLOAT(4),
         INTEGER(5),
         LONG(6),
         DOUBLE(7),
         STRING(8),
-        LOCALTIME(9);
+        LOCAL_TIME(9);
         
         private int dataType;
         DataTypes(int dataType) {

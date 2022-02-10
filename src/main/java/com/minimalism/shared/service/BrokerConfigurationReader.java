@@ -110,7 +110,7 @@ public class BrokerConfigurationReader {
         return returnValue;
     }
 
-    private void loadKafkaProperties() throws NoSuchPathException, IOException, URISyntaxException {
+    private void loadKafkaProperties() throws NoSuchPathException, IOException {
         var kafkaConfigFilePath = FileSystemConfigHelper.getInstance()
                 .getServiceOutputDataDefinitionDirectory(this.clientName)
                 .resolve("kafka".concat("_")

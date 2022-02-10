@@ -18,3 +18,4 @@ com\minimalism\shared\exceptions\FileTypeNotSupportedException.class
 com\minimalism\shared\common\AllEnums$RecordTypes.class
 com\minimalism\shared\service\AppConfigHelper.class
 com\minimalism\shared\exceptions\NoSuchPathException.class
+com\minimalism\shared\domain\Field$1.class

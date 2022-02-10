@@ -1,9 +1,9 @@
 package com.minimalism.shared;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import com.minimalism.shared.domain.ServiceConfiguration;
 import com.minimalism.shared.exceptions.NoSuchPathException;
@@ -21,9 +21,18 @@ class ClientConfigHelperTests {
             assertEquals("client_1", result.getClientName());
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
-        } catch (URISyntaxException e) {
+        } 
+    }
+
+    @Test
+    void testGetServiceConfiguration_non_existent_client_throws_exception() {
+        try {
+            ClientConfigHelper iut = new ClientConfigHelper("client_4");
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceConfiguration("client_4");
+            });
+        } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         }
-        
     }
 }

@@ -1,12 +1,14 @@
 package com.minimalism.shared.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.apache.commons.text.CaseUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class Entity {
     private String name;
@@ -22,7 +24,10 @@ public class Entity {
     }
 
     public void setName(String name) {
-        this.name = hyphensToCamelCase(name);
+        if(name == null || name.isEmpty() || name.isBlank()) {
+            throw new IllegalArgumentException("Entity name cannot be null or empty.");
+        }
+        this.name = name;
     }
 
     public String getTargetDomainName() {
@@ -30,6 +35,9 @@ public class Entity {
     }
 
     public void setTargetDomainName(String targetDomainName) {
+        if(targetDomainName == null || targetDomainName.isEmpty() || targetDomainName.isBlank()) {
+            targetDomainName = "target.domain.name";
+        }
         this.targetDomainName = targetDomainName;
     }
 
@@ -37,8 +45,9 @@ public class Entity {
         return fields;
     }
 
+    @JsonIgnore
     public List<Field> getListOfFields() {
-        return this.fields.values().stream().collect(Collectors.toList());
+        return this.fields.values().stream().toList();
     }
 
     public void setFields(Map<String, Field> fields) {
@@ -59,29 +68,18 @@ public class Entity {
         return this.fields.get(fieldName);
     }
 
+    @Deprecated(forRemoval = true)
+    /**
+     * @deprecated from 2022-02-22, not required since the client app can retrieve Field by name
+     */
     public Object getFieldValue(String fieldName) {
         return this.fields.get(fieldName).getValue();
     }
 
-    public JsonObject asJsonObject() {
-        JsonObjectBuilder builder = Json.createObjectBuilder();
-        
-        JsonArrayBuilder fieldsBuilder = Json.createArrayBuilder();
-        for(Field f : this.fields.values()) {
-            fieldsBuilder.add(f.asJsonObject());
-        }
-        return builder
-            .add("name", this.getName())
-            .add("targetDomainName", this.getTargetDomainName())
-            .add("fields", fieldsBuilder)
-            .build();
-    }
-
-    private String hyphensToCamelCase(String input) {
-        if(input.contains("-")) {
-            return CaseUtils.toCamelCase(input, true, '-');
-        } else {
-            return CaseUtils.toCamelCase(input, true);
-        }
+    public String asJson() throws JsonProcessingException {
+        JsonMapper mapper = new JsonMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return mapper.writeValueAsString(this);
     }
 }

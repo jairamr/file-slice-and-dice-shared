@@ -1,6 +1,5 @@
 package com.minimalism.shared.service;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,13 +12,9 @@ public class AppConfigHelper {
     private static Properties appProperties = new Properties();
     
     private AppConfigHelper() throws IOException {
-        var basePath = Paths.get(System.getProperty("user.dir")).toAbsolutePath();
-
-        var toPropertiesFile = basePath.resolve("src/main/resources/app.properties");
-        try(var reader = new FileReader(toPropertiesFile.toString())) {
-            appProperties.load(reader);
-        }
+        appProperties.load(getClass().getClassLoader().getResourceAsStream("app.properties"));
     }
+
     /** 
      * @return AppConfigHelper
      * @throws IOException
@@ -30,6 +25,7 @@ public class AppConfigHelper {
         }
         return instance;
     }
+    
     /** 
      * @return Path
      */

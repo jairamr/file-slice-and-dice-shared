@@ -89,9 +89,9 @@ class IngestServiceSummaryTests {
 
     @ParameterizedTest
     @CsvSource({
-        "0", "0", "3", "0",
-        "0", "0", "0", "5",
-        "3", "0", "0", "5", 
+        "0, 0, 3, 0",
+        "0, 0, 0, 5",
+        "3, 0, 0, 5", 
     })
     void testIterationHadNoErrors_false_with_invalidRecords(
             int invalidRecords_1, int missingInformationRecords_1,
@@ -100,7 +100,7 @@ class IngestServiceSummaryTests {
         iStat1.setThreadName("thread_1");
         iStat1.setWorkerId(0L);
         iStat1.setIterationNumber(0);
-        iStat1.setInvalidRecords(invalidRecords_1);
+        iStat1.setInvalidRecords(invalidRecords_1); 
         iStat1.setMissingInformationRecords(missingInformationRecords_1);
         IterationStatistics iStat2 = new IterationStatistics();
         iStat2.setThreadName("thread_2");
@@ -259,6 +259,7 @@ class IngestServiceSummaryTests {
         "\"bufferSize\":0,\"byteOffsetInFile\":0,\"byteOffsetForBuffer\":0,\"processedBytes\":345678,\"processedRecords\":0," + 
         "\"validRecords\":0,\"invalidRecords\":0,\"missingInformationRecords\":0,\"iterationDuration\":22,\"parsingDuration\":0," + 
         "\"publishingDuration\":22}]}", iut.toString());
+        System.out.println(iut.toString());
         
     }
 
@@ -284,7 +285,7 @@ class IngestServiceSummaryTests {
         iStat2.setProcessedBytes(345678L);
         iut.addStat(iStat1);
         iut.addStat(iStat2);
-        assertEquals((2456782L + 345678L), iut.totalBytesProcessed());
+        assertEquals((245678L + 345678L), iut.totalBytesProcessed());
     }
 
     @Test

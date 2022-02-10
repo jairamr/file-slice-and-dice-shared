@@ -2,6 +2,9 @@ package com.minimalism.shared.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -33,6 +36,32 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceArchiveDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetServiceArchiveDirectory_io_exception() {
+        FileSystemConfigHelper iut = mock(FileSystemConfigHelper.class);
+        try {
+            when(iut.getServiceArchiveDirectory("client_1")).thenThrow(new IOException("an I/O Exception occurred."));
+        } catch (NoSuchPathException | IOException e) {
+            e.printStackTrace();
+        }
+            
+        assertThrows(IOException.class, () -> {
+            iut.getServiceArchiveDirectory("client_1");
+        }); 
+    }
+
+    @Test
     void testGetServiceArchiveDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -55,6 +84,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceArchiveInputDataDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveInputDataBinDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceArchiveInputDataBinDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -72,6 +113,18 @@ class FileSystemConfigHelperTests {
             Path result = iut.getServiceArchiveInputDataCSVDirectory("client_1");
             assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1\\archive\\input\\csv", result.toString());
         } catch (IOException | NoSuchPathException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetServiceArchiveInputDataCSVDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveInputDataCSVDirectory("clinet_4");
+            }); 
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -99,6 +152,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceArchiveInputDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveInputDataDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceArchiveInputDataDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -118,6 +183,18 @@ class FileSystemConfigHelperTests {
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Test
+    void testGetServiceArchiveOutputDataBinDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveOutputDataBinDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -143,6 +220,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceArchiveOutPutDataCSVDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveOutputDataCSVDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceArchiveOutputDataCSVDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -165,6 +254,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceArchiveOutputDataDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceArchiveDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceArchiveOutputDataDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -182,6 +283,18 @@ class FileSystemConfigHelperTests {
             Path result = iut.getServiceClientRootDirectory("client_1");
             assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1", result.toString());
         } catch (IOException | NoSuchPathException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetServiceClientRootDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceClientRootDirectory("client_4");
+            }); 
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -220,6 +333,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceInputDataBinDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceInputDataBinDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceInputDataBinDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -242,6 +367,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceInputDataCSVDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceInputDataCSVDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceInputDataCSVDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -261,6 +398,18 @@ class FileSystemConfigHelperTests {
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Test
+    void testGetServiceInputDataDefinitionDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceInputDataDefinitionDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -297,6 +446,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceInputDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceInputDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceInstrumentationDirectory() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -305,6 +466,18 @@ class FileSystemConfigHelperTests {
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Test
+    void testGetServiceInstrumentationDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceInstrumentationDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -330,6 +503,18 @@ class FileSystemConfigHelperTests {
     }
 
     @Test
+    void testGetServiceLostAndFouldDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceLostAndFoundDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceLostAndFoundDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
@@ -344,18 +529,30 @@ class FileSystemConfigHelperTests {
     void testGetServiceOutputDataBinDirectory() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
-            Path result = iut.getServiceArchiveOutputDataBinDirectory("client_1");
-            assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1\\archive\\output\\bin", result.toString());
+            Path result = iut.getServiceOutputDataBinDirectory("client_1");
+            assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1\\output\\bin", result.toString());
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
     }
 
     @Test
+    void testGetServiceOutputDataBinDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceOutputDataBinDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceOutputDataBinDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
-            String result = iut.getServiceArchiveOutputDataBinDirectoryName();
+            String result = iut.getServiceOutputDataBinDirectoryName();
             assertEquals("bin", result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -366,18 +563,30 @@ class FileSystemConfigHelperTests {
     void testGetServiceOutputDataCSVDirectory() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
-            Path result = iut.getServiceArchiveOutputDataCSVDirectory("client_1");
-            assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1\\archive\\output\\csv", result.toString());
+            Path result = iut.getServiceOutputDataCSVDirectory("client_1");
+            assertEquals("C:\\Users\\jaira\\FileSliceAndDice\\clients\\client_1\\output\\csv", result.toString());
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
     }
 
     @Test
+    void testGetServiceOutputDataCSVDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceOutputDataCSVDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testGetServiceOutputDataCSVDirectoryName() {
         try {
             FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
-            String result = iut.getServiceArchiveOutputDataCSVDirectoryName();
+            String result = iut.getServiceOutputDataCSVDirectoryName();
             assertEquals("csv", result.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -393,6 +602,18 @@ class FileSystemConfigHelperTests {
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Test
+    void testGetServiceOutputDataDefinitionDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceOutputDataDefinitionDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -415,6 +636,18 @@ class FileSystemConfigHelperTests {
         } catch (IOException | NoSuchPathException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Test
+    void testGetServiceOutputDirectory_no_such_path() {
+        try {
+            FileSystemConfigHelper iut = FileSystemConfigHelper.getInstance();
+            assertThrows(NoSuchPathException.class, () -> {
+                iut.getServiceOutputDirectory("client_4");
+            }); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -1,12 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IterationStatistics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patterns</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.domain</a> &gt; <span class="el_source">IterationStatistics.java</span></div><h1>IterationStatistics.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.domain;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IterationStatistics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">file-slice-and-dice-shared</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.domain</a> &gt; <span class="el_source">IterationStatistics.java</span></div><h1>IterationStatistics.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.domain;
 
 import java.util.Objects;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-<span class="nc" id="L9">public class IterationStatistics {</span>
+@JsonPropertyOrder({
+    &quot;iterationNumber&quot;,&quot;workerId&quot;,&quot;threadName&quot;,
+    &quot;bufferSize&quot;,&quot;byteOffsetInFile&quot;,&quot;byteOffsetForBuffer&quot;,
+    &quot;processedBytes&quot;,&quot;processedRecords&quot;,&quot;validRecords&quot;,
+    &quot;invalidRecords&quot;,&quot;missingInformationRecords&quot;,&quot;iterationDuration&quot;,
+    &quot;parsingDuration&quot;,&quot;publishingDuration&quot;
+})
+<span class="fc" id="L19">public class IterationStatistics {</span>
     private int iterationNumber;
     private long workerId;
     private String threadName;
@@ -25,147 +35,233 @@ import javax.json.JsonObjectBuilder;
     private int invalidRecords;
     private int missingInformationRecords;
 
+    @JsonGetter(&quot;workerId&quot;)
     public long getWorkerId() {
-<span class="nc" id="L29">        return workerId;</span>
+<span class="fc" id="L40">        return workerId;</span>
     }
+
+    @JsonSetter(&quot;workerId&quot;)
     public void setWorkerId(long workerId) {
-<span class="nc" id="L32">        this.workerId = workerId;</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if(workerId &lt; 0) {</span>
+<span class="fc" id="L46">            workerId = 0;</span>
+        }
+<span class="fc" id="L48">        this.workerId = workerId;</span>
+<span class="fc" id="L49">    }</span>
+
+    @JsonGetter(&quot;threadName&quot;)
     public String getThreadName() {
-<span class="nc" id="L35">        return threadName;</span>
+<span class="fc" id="L53">        return threadName;</span>
     }
+
+    @JsonSetter(&quot;threadName&quot;)
     public void setThreadName(String threadName) {
-<span class="nc" id="L38">        this.threadName = threadName;</span>
-<span class="nc" id="L39">    }</span>
+<span class="fc bfc" id="L58" title="All 6 branches covered.">        if(threadName == null || threadName.isEmpty() || threadName.isBlank()) {</span>
+<span class="fc" id="L59">            threadName = &quot;no_name&quot;;</span>
+        }
+<span class="fc" id="L61">        this.threadName = threadName;</span>
+<span class="fc" id="L62">    }</span>
+
+    @JsonGetter(&quot;iterationNumber&quot;)
     public int getIterationNumber() {
-<span class="nc" id="L41">        return this.iterationNumber;</span>
+<span class="fc" id="L66">        return this.iterationNumber;</span>
     }
+
+    @JsonSetter(&quot;iterationNumber&quot;)
     public void setIterationNumber(int iterationNumber) {
-<span class="nc" id="L44">        this.iterationNumber = iterationNumber;</span>
-<span class="nc" id="L45">    }</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if(iterationNumber &lt; 0) {</span>
+<span class="fc" id="L72">            iterationNumber = 0;</span>
+        }
+<span class="fc" id="L74">        this.iterationNumber = iterationNumber;</span>
+<span class="fc" id="L75">    }</span>
+
+    @JsonGetter(&quot;bufferSize&quot;)
     public int getBufferSize() {
-<span class="nc" id="L47">        return bufferSize;</span>
+<span class="fc" id="L79">        return bufferSize;</span>
     }
+    @JsonSetter(&quot;bufferSize&quot;)
     public void setBufferSize(int bufferSize) {
-<span class="nc" id="L50">        this.bufferSize = bufferSize;</span>
-<span class="nc" id="L51">    }</span>
+        //if negative, set as zero
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if(bufferSize &lt; 0) {</span>
+<span class="fc" id="L85">            bufferSize = 0;</span>
+        }
+<span class="fc" id="L87">        this.bufferSize = bufferSize;</span>
+<span class="fc" id="L88">    }</span>
+
+    @JsonGetter(&quot;byteOffsetInFile&quot;)
     public long getByteOffsetInFile() {
-<span class="nc" id="L53">        return this.byteOffsetInFile;</span>
+<span class="fc" id="L92">        return this.byteOffsetInFile;</span>
     }
-    public void setByteOffsetInFile(long offetInFile) {
-<span class="nc" id="L56">        this.byteOffsetInFile = offetInFile;</span>
-<span class="nc" id="L57">    }</span>
+
+    @JsonSetter(&quot;byteOffsetInFile&quot;)
+    public void setByteOffsetInFile(long offsetInFile) {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if(offsetInFile &lt; 0) {</span>
+<span class="fc" id="L98">            offsetInFile = 0;</span>
+        }
+<span class="fc" id="L100">        this.byteOffsetInFile = offsetInFile;</span>
+<span class="fc" id="L101">    }</span>
+
+    @JsonGetter(&quot;byteOffsetForBuffer&quot;)
     public long getByteOffsetForBuffer() {
-<span class="nc" id="L59">        return this.byteOffsetForBuffer;</span>
+<span class="fc" id="L105">        return this.byteOffsetForBuffer;</span>
     }
+
+    @JsonSetter(&quot;byteOffsetForBuffer&quot;)
     public void setByteOffsetForBuffer(long offsetForBuffer) {
-<span class="nc" id="L62">        this.byteOffsetForBuffer = offsetForBuffer;</span>
-<span class="nc" id="L63">    }</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if(offsetForBuffer &lt; 0) {</span>
+<span class="fc" id="L111">            offsetForBuffer = 0;</span>
+        }
+<span class="fc" id="L113">        this.byteOffsetForBuffer = offsetForBuffer;</span>
+<span class="fc" id="L114">    }</span>
+
+    @JsonSetter(&quot;parsingStartTime&quot;)
     public void setParsingStartTime(long parsingStartTime) {
-<span class="nc" id="L65">        this.parsingStartTime = parsingStartTime;</span>
-<span class="nc" id="L66">    }</span>
+<span class="fc" id="L118">        this.parsingStartTime = parsingStartTime;</span>
+<span class="fc" id="L119">    }</span>
+
+    @JsonSetter(&quot;publishingStartTime&quot;)
     public void setPublishingStartTime(long publishingStartTime) {
-<span class="nc" id="L68">        this.publishingStartTime = publishingStartTime;</span>
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L123">        this.publishingStartTime = publishingStartTime;</span>
+<span class="nc" id="L124">    }</span>
+
+    @JsonSetter(&quot;parsingEndTime&quot;)
     public void setParsingEndTime(long parsingEndTime) {
-<span class="nc" id="L71">        this.parsingEndTime = parsingEndTime;</span>
-<span class="nc" id="L72">        this.publishingStartTime = parsingEndTime;</span>
-<span class="nc" id="L73">    }</span>
+<span class="fc" id="L128">        this.parsingEndTime = parsingEndTime;</span>
+<span class="fc" id="L129">        this.publishingStartTime = parsingEndTime;</span>
+<span class="fc" id="L130">    }</span>
+
+    @JsonSetter(&quot;publishingEndTime&quot;)
     public void setPublishingEndTime(long publishingEndTime) {
-<span class="nc" id="L75">        this.publishingEndTime = publishingEndTime;</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L134">        this.publishingEndTime = publishingEndTime;</span>
+<span class="nc" id="L135">    }</span>
+
+    @JsonGetter(&quot;parsingDuration&quot;)
     public long getParsingDuration() {
-<span class="nc" id="L78">        return this.parsingEndTime - this.parsingStartTime;</span>
+<span class="fc" id="L139">        return this.parsingEndTime - this.parsingStartTime;</span>
     }
+
+    @JsonGetter(&quot;publishingDuration&quot;)
     public long getPublishingDuration() {
-<span class="nc" id="L81">        return this.publishingEndTime - this.publishingStartTime;</span>
+<span class="fc" id="L144">        return this.publishingEndTime - this.publishingStartTime;</span>
     }
+
+    @JsonSetter(&quot;iterationStartTime&quot;)
     public void setIterationStartTime(long iterationStartTime) {
-<span class="nc" id="L84">        this.iterationStartTime = iterationStartTime;</span>
-<span class="nc" id="L85">        this.parsingStartTime = iterationStartTime;</span>
-<span class="nc" id="L86">    }</span>
+<span class="fc" id="L149">        this.iterationStartTime = iterationStartTime;</span>
+<span class="fc" id="L150">        this.parsingStartTime = iterationStartTime;</span>
+<span class="fc" id="L151">    }</span>
+
+    @JsonSetter(&quot;iterationEndTime&quot;)
     public void setIterationEndTime(long iterationEndTime) {
-<span class="nc" id="L88">        this.iterationEndTime = iterationEndTime;</span>
-<span class="nc" id="L89">        this.publishingEndTime = iterationEndTime;</span>
-<span class="nc" id="L90">    }</span>
+<span class="fc" id="L155">        this.iterationEndTime = iterationEndTime;</span>
+<span class="fc" id="L156">        this.publishingEndTime = iterationEndTime;</span>
+<span class="fc" id="L157">    }</span>
+
+    @JsonGetter(&quot;iterationDuration&quot;)
     public long getIterationDuration() {
-<span class="nc" id="L92">        return this.iterationEndTime - this.iterationStartTime;</span>
+<span class="fc" id="L161">        return this.iterationEndTime - this.iterationStartTime;</span>
     }
+
+    @JsonGetter(&quot;processedBytes&quot;)
     public long getProcessedBytes() {
-<span class="nc" id="L95">        return processedBytes;</span>
+<span class="fc" id="L166">        return processedBytes;</span>
     }
+
+    @JsonSetter(&quot;processedBytes&quot;)
     public void setProcessedBytes(long processedBytes) {
-<span class="nc" id="L98">        this.processedBytes = processedBytes;</span>
-<span class="nc" id="L99">    }</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">        if(processedBytes &lt; 0) {</span>
+<span class="fc" id="L172">            processedBytes = 0;</span>
+        }
+<span class="fc" id="L174">        this.processedBytes = processedBytes;</span>
+<span class="fc" id="L175">    }</span>
+
+    @JsonGetter(&quot;processedRecords&quot;)
     public int getProcessedRecords() {
-<span class="nc" id="L101">        return processedRecords;</span>
+<span class="fc" id="L179">        return processedRecords;</span>
     }
+
+    @JsonSetter(&quot;processedRecords&quot;)
     public void setProcessedRecords(int processedRecords) {
-<span class="nc" id="L104">        this.processedRecords = processedRecords;</span>
-<span class="nc" id="L105">    }</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">        if(processedRecords &lt; 0) {</span>
+<span class="fc" id="L185">            processedRecords = 0;</span>
+        }
+<span class="fc" id="L187">        this.processedRecords = processedRecords;</span>
+<span class="fc" id="L188">    }</span>
+
+    @JsonGetter(&quot;validRecords&quot;)
     public int getValidRecords() {
-<span class="nc" id="L107">        return validRecords;</span>
+<span class="fc" id="L192">        return validRecords;</span>
     }
+
+    @JsonSetter(&quot;validRecords&quot;)
     public void setValidRecords(int validRecords) {
-<span class="nc" id="L110">        this.validRecords = validRecords;</span>
-<span class="nc" id="L111">    }</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        if(validRecords &lt; 0) {</span>
+<span class="fc" id="L198">            validRecords = 0;</span>
+        }
+<span class="fc" id="L200">        this.validRecords = validRecords;</span>
+<span class="fc" id="L201">    }</span>
+
+    @JsonGetter(&quot;invalidRecords&quot;)
     public int getInvalidRecords() {
-<span class="nc" id="L113">        return invalidRecords;</span>
+<span class="fc" id="L205">        return invalidRecords;</span>
     }
+
+    @JsonSetter(&quot;invalidRecords&quot;)
     public void setInvalidRecords(int invalidRecords) {
-<span class="nc" id="L116">        this.invalidRecords = invalidRecords;</span>
-<span class="nc" id="L117">    }</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        if(invalidRecords &lt; 0) {</span>
+<span class="fc" id="L211">            invalidRecords = 0;</span>
+        }
+<span class="fc" id="L213">        this.invalidRecords = invalidRecords;</span>
+<span class="fc" id="L214">    }</span>
+
+    @JsonGetter(&quot;missingInformationRecords&quot;)
     public int getMissingInformationRecords() {
-<span class="nc" id="L119">        return missingInformationRecords;</span>
+<span class="fc" id="L218">        return missingInformationRecords;</span>
     }
+
+    @JsonSetter(&quot;missingInformationRecords&quot;)
     public void setMissingInformationRecords(int missingInformationRecords) {
-<span class="nc" id="L122">        this.missingInformationRecords = missingInformationRecords;</span>
-<span class="nc" id="L123">    }</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">        if(missingInformationRecords &lt; 0) {</span>
+<span class="fc" id="L224">            missingInformationRecords = 0;</span>
+        }
+<span class="fc" id="L226">        this.missingInformationRecords = missingInformationRecords;</span>
+<span class="fc" id="L227">    }</span>
+
     @Override
+    @JsonIgnore
     public int hashCode() {
-<span class="nc" id="L126">        return Objects.hash(this.threadName, this.workerId, this.iterationNumber);</span>
+<span class="fc" id="L232">        return Objects.hash(this.threadName, this.workerId, this.iterationNumber);</span>
     }
+
     @Override
+    @JsonIgnore
     public boolean equals(Object other) {
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        if(other == null)</span>
-<span class="nc" id="L131">            return false;</span>
-<span class="nc bnc" id="L132" title="All 2 branches missed.">        if(!(other instanceof IterationStatistics))</span>
-<span class="nc" id="L133">            return false;</span>
-<span class="nc bnc" id="L134" title="All 2 branches missed.">        return other.hashCode() == this.hashCode();</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">        if(other == null)</span>
+<span class="nc" id="L239">            return false;</span>
+<span class="pc bpc" id="L240" title="1 of 2 branches missed.">        if(!(other instanceof IterationStatistics))</span>
+<span class="nc" id="L241">            return false;</span>
+<span class="pc bpc" id="L242" title="1 of 2 branches missed.">        return other.hashCode() == this.hashCode();</span>
     }
+
     @Override
+    @JsonIgnore
     public String toString() {
-<span class="nc" id="L138">        return this.asJson().toString();</span>
+<span class="fc" id="L248">        String returnValue = null;</span>
+<span class="fc" id="L249">        ObjectMapper mapper = new ObjectMapper();</span>
+        try {
+<span class="fc" id="L251">            returnValue = mapper.writeValueAsString(this);</span>
+<span class="pc" id="L252">        } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L253">            e.printStackTrace();</span>
+        }
+<span class="fc" id="L255">        return returnValue;</span>
     }
-<span class="nc" id="L140">    public JsonObject asJson() {</span>
 
-        JsonObjectBuilder jsonBuilder = Json.createObjectBuilder();
-        jsonBuilder.add(&quot;iterationNumber&quot;, this.getIterationNumber())
-        .add(&quot;workerId&quot;, this.getWorkerId())
-        .add(&quot;threadName&quot;, this.getThreadName())
-        .add(&quot;bufferSize&quot;, this.getBufferSize())
-        .add(&quot;offsetInFile&quot;, this.getByteOffsetInFile())
-        .add(&quot;offsetForBuffer&quot;, this.getByteOffsetForBuffer())
-        .add(&quot;parsingStartTime&quot;, this.parsingStartTime)
-        .add(&quot;parsingEndTime&quot;, this.parsingEndTime)
-        .add(&quot;publishingStartTime&quot;, this.publishingStartTime)
-        .add(&quot;publishingEndTime&quot;,this.publishingEndTime)
-        .add(&quot;iterationStartTime&quot;, this.iterationStartTime)
-        .add(&quot;iterationEndTime&quot;,this.iterationEndTime)
-        .add(&quot;processedBytes&quot;, this.getProcessedBytes())
-        .add(&quot;processedRecords&quot;, this.getProcessedRecords())
-        .add(&quot;validRecords&quot;,this.getValidRecords())
-        .add(&quot;invalidRecords&quot;, this.getInvalidRecords())
-        .add(&quot;missingInformationRecords&quot;, this.getMissingInformationRecords());
-
-        return jsonBuilder.build();
-    }
     public void addResidualProcessedBytes(int residualBytes) {
-<span class="nc" id="L164">        this.setProcessedBytes(this.processedBytes + residualBytes);</span>
-<span class="nc" id="L165">    }</span>
+<span class="fc" id="L259">        this.setProcessedBytes(this.processedBytes + residualBytes);</span>
+<span class="fc" id="L260">    }</span>
+    
     public void addResidualProcessedRecords(int residualRecords) {
-<span class="nc" id="L167">        this.setProcessedRecords(this.processedRecords + residualRecords);</span>
-<span class="nc" id="L168">    }</span>
+<span class="fc" id="L263">        this.setProcessedRecords(this.processedRecords + residualRecords);</span>
+<span class="fc" id="L264">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

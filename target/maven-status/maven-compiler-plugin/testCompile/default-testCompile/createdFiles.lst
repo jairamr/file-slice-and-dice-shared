@@ -1,2 +1,8 @@
-com\minimalism\shared\service\FileSystemConfigHelperTests.class
+com\minimalism\shared\domain\ServiceConfigurationTests.class
+com\minimalism\shared\domain\IterationStatisticsTests.class
 com\minimalism\shared\ClientConfigHelperTests.class
+com\minimalism\shared\service\BrokerConfigurationTests.class
+com\minimalism\shared\service\FileSystemConfigHelperTests.class
+com\minimalism\shared\domain\IngestServiceSummaryTests.class
+com\minimalism\shared\domain\FieldTests.class
+com\minimalism\shared\domain\EntityTests.class
