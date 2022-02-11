@@ -37,8 +37,42 @@ public class AllEnums {
             return this.getType().getSimpleName();
         }
 
+        public DataTypes getDataType(String typeName) {
+            DataTypes returnValue = DataTypes.STRING;
+            switch(typeName) {
+                case "Boolean":
+                returnValue = DataTypes.BOOLEAN;
+                break;
+                case "BigDecimal":
+                returnValue = DataTypes.BIG_DECIMAL;
+                break;
+                case "Double":
+                returnValue = DataTypes.DOUBLE;
+                break;
+                case "Float":
+                returnValue = DataTypes.FLOAT;
+                break;
+                case "Integer":
+                returnValue = DataTypes.INTEGER;
+                break;
+                case "LocalDate":
+                returnValue = DataTypes.LOCAL_DATE;
+                break;
+                case "LocalTime":
+                returnValue = DataTypes.LOCAL_TIME;
+                break;
+                case "Long":
+                returnValue = DataTypes.LONG;
+                break;
+                default: // default return value is STRING
+                break;                
+            }
+            return returnValue;
+        }
+
         public Class<?> getType() {
             Class<?> type;
+
             switch (this.dataType) {
                 case 0:
                 type = Boolean.class;
