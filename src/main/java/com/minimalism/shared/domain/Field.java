@@ -63,6 +63,19 @@ public class Field {
         return mapper.writeValueAsString(this);
     }
 
+    public String getAvroSchemaJson() {
+        org.apache.avro.Schema avroField = org.apache.avro.SchemaBuilder
+        .record("Field").namespace("com.minimalism.shared.domain")
+            .fields()//.requiredLong("requestTime")
+                .name("name").type("string").noDefault()
+                .name("dataType").type(this.dataType.getTypeName()).withDefault(DataTypes.STRING.name())
+                .name("value").type(this.dataType.getTypeName().toLowerCase())
+                .noDefault()
+            .endRecord();
+            
+        return avroField.toString();
+    }
+
     private void setValueAsTargetType(Object value) {
         if(value == null) {
             this.value = null;

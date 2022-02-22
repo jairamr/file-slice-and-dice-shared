@@ -188,13 +188,6 @@ class FieldTests {
         iut.setDataType(DataTypes.STRING);
         assertEquals("String", iut.dataTypeClassName());
     }
-    
-    @Test
-    void testGetDataTypeClassName_email() {
-        Field iut = new Field();
-        iut.setDataType(DataTypes.EMAIL);
-        assertEquals("Email", iut.dataTypeClassName());
-    }
 
     @Test
     void testGetName() {
@@ -286,5 +279,11 @@ class FieldTests {
     void testHashCode() {
         Field iut = new Field("name", DataTypes.STRING, "test");
         assertEquals(Objects.hash(iut.getName(), iut.getDataType()), iut.hashCode());
+    }
+
+    @Test
+    void testAvroSchema() {
+        Field iut = new Field("name", DataTypes.STRING, "test");
+        System.out.println(iut.getAvroSchemaJson());
     }
 }

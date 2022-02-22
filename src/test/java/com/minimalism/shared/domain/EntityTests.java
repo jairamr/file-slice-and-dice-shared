@@ -60,21 +60,18 @@ class EntityTests {
 
     @Test
     void testAsJson() {
-        try {
-            System.out.println(iut.asJson());
-            assertEquals("{\"name\":\"testEntity\",\"targetDomainName\":\"com.minimalism.entity\"," + 
-            "\"fields\":{\"field_four\":{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":44.44}," + 
-            "\"field_six\":{\"name\":\"field_six\",\"dataType\":\"LocalDate\",\"value\":\"2022-02-04\"}," + 
-            "\"field_eight\":{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":33}," + 
-            "\"field_three\":{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":33.33}," + 
-            "\"field_seven\":{\"name\":\"field_seven\",\"dataType\":\"LocalTime\",\"value\":\"12:12:12\"}," + 
-            "\"field_nine\":{\"name\":\"field_nine\",\"dataType\":\"String\",\"value\":\"test string\"}," + 
-            "\"field_two\":{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":true}," + 
-            "\"field_five\":{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":22}," + 
-            "\"field_one\":{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":22.22}}}", iut.asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+    
+        System.out.println(iut.toString());
+        assertEquals("{\"name\":\"testEntity\",\"targetDomainName\":\"com.minimalism.entity\"," + 
+        "\"fields\":{\"field_four\":{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":44.44}," + 
+        "\"field_six\":{\"name\":\"field_six\",\"dataType\":\"LocalDate\",\"value\":\"2022-02-04\"}," + 
+        "\"field_eight\":{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":33}," + 
+        "\"field_three\":{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":33.33}," + 
+        "\"field_seven\":{\"name\":\"field_seven\",\"dataType\":\"LocalTime\",\"value\":\"12:12:12\"}," + 
+        "\"field_nine\":{\"name\":\"field_nine\",\"dataType\":\"String\",\"value\":\"test string\"}," + 
+        "\"field_two\":{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":true}," + 
+        "\"field_five\":{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":22}," + 
+        "\"field_one\":{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":22.22}}}", iut.toString());
     }
 
     @Test

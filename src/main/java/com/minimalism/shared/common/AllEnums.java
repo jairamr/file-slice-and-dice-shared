@@ -20,14 +20,14 @@ public class AllEnums {
     public enum DataTypes {
         BOOLEAN(0),
         BIG_DECIMAL(1),
-        LOCAL_DATE(2),
-        EMAIL(3),
+        CHARACTER(2),
+        DOUBLE(3),
         FLOAT(4),
         INTEGER(5),
-        LONG(6),
-        DOUBLE(7),
-        STRING(8),
-        LOCAL_TIME(9);
+        LOCAL_DATE(6),
+        LOCAL_TIME(7),
+        LONG(8),
+        STRING(9);
         
         private int dataType;
         DataTypes(int dataType) {
@@ -40,6 +40,9 @@ public class AllEnums {
         public DataTypes getDataType(String typeName) {
             DataTypes returnValue = DataTypes.STRING;
             switch(typeName) {
+                case "Character":
+                returnValue = DataTypes.CHARACTER;
+                break;
                 case "Boolean":
                 returnValue = DataTypes.BOOLEAN;
                 break;
@@ -72,7 +75,6 @@ public class AllEnums {
 
         public Class<?> getType() {
             Class<?> type;
-
             switch (this.dataType) {
                 case 0:
                 type = Boolean.class;
@@ -81,10 +83,10 @@ public class AllEnums {
                 type = BigDecimal.class;
                 break;
                 case 2:
-                type = LocalDate.class;
+                type = Character.class;
                 break;
                 case 3:
-                type = String.class;
+                type = Double.class;
                 break;
                 case 4:
                 type = Float.class;
@@ -93,16 +95,16 @@ public class AllEnums {
                 type = Integer.class;
                 break;
                 case 6:
-                type = Long.class;
+                type = LocalDate.class;
                 break;
                 case 7:
-                type = Double.class;
+                type = LocalTime.class;
                 break;
                 case 8:
-                type = String.class;
+                type = Long.class;
                 break;
                 case 9:
-                type = LocalTime.class;
+                type = String.class;
                 break;
                 default:
                 type = String.class;

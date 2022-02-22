@@ -2,7 +2,6 @@
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 import com.minimalism.shared.exceptions.NoSuchPathException;
@@ -12,113 +11,113 @@ public class BrokerConfigurationReader {
     private String recordTypeName;
     private Properties kafkaProperties;
     
-<span class="nc" id="L15">    public BrokerConfigurationReader(String clientName, String recordTypeName) throws NoSuchPathException, IOException, URISyntaxException {</span>
-<span class="nc" id="L16">        this.kafkaProperties = new Properties();</span>
-<span class="nc" id="L17">        this.clientName = clientName;</span>
-<span class="nc" id="L18">        this.recordTypeName = recordTypeName;</span>
-<span class="nc" id="L19">        loadKafkaProperties();</span>
-<span class="nc" id="L20">    }</span>
+<span class="nc" id="L14">    public BrokerConfigurationReader(String clientName, String recordTypeName) throws NoSuchPathException, IOException {</span>
+<span class="nc" id="L15">        this.kafkaProperties = new Properties();</span>
+<span class="nc" id="L16">        this.clientName = clientName;</span>
+<span class="nc" id="L17">        this.recordTypeName = recordTypeName;</span>
+<span class="nc" id="L18">        loadKafkaProperties();</span>
+<span class="nc" id="L19">    }</span>
 
     public String getBootsatrapServers() {
-<span class="nc" id="L23">        return kafkaProperties.getProperty(&quot;bootstrap_servers&quot;);</span>
+<span class="nc" id="L22">        return kafkaProperties.getProperty(&quot;bootstrap_servers&quot;);</span>
     }
 
     public String getTopic() {
-<span class="nc" id="L27">        return kafkaProperties.getProperty(&quot;topic&quot;);</span>
+<span class="nc" id="L26">        return kafkaProperties.getProperty(&quot;topic&quot;);</span>
     }
 
     public int getPartitionsCount() {
-<span class="nc" id="L31">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;topic_partitions&quot;));</span>
+<span class="nc" id="L30">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;topic_partitions&quot;));</span>
     }
 
     public long getPublisherBufferMemorySize() {
-<span class="nc" id="L35">        return Long.parseLong(this.kafkaProperties.getProperty(&quot;publisher.buffer.memory&quot;));</span>
+<span class="nc" id="L34">        return Long.parseLong(this.kafkaProperties.getProperty(&quot;publisher.buffer.memory&quot;));</span>
     }
 
     public int getPublisherRetriesCount() {
-<span class="nc" id="L39">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.retries&quot;));</span>
+<span class="nc" id="L38">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.retries&quot;));</span>
     }
 
     public int getPublisherLingerMilliseconds() {
-<span class="nc" id="L43">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.linger.milliseconds&quot;));</span>
+<span class="nc" id="L42">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.linger.milliseconds&quot;));</span>
     }
 
     public int getPublisherBatchSize() {
-<span class="nc" id="L47">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.batch.size&quot;));</span>
+<span class="nc" id="L46">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;publisher.batch.size&quot;));</span>
     }
 
     public boolean autoRegisterSchemas() {
-<span class="nc" id="L51">        return Boolean.parseBoolean(this.kafkaProperties.getProperty(&quot;auto.register.schemas&quot;));</span>
+<span class="nc" id="L50">        return Boolean.parseBoolean(this.kafkaProperties.getProperty(&quot;auto.register.schemas&quot;));</span>
     }
 
     public String getSchemaRegistryUrl() {
-<span class="nc" id="L55">        return this.kafkaProperties.getProperty(&quot;schema.registry.url&quot;);</span>
+<span class="nc" id="L54">        return this.kafkaProperties.getProperty(&quot;schema.registry.url&quot;);</span>
     }
 
     public String getKeySerializerName() {
-<span class="nc" id="L59">        return this.kafkaProperties.getProperty(&quot;key.serializer&quot;);</span>
+<span class="nc" id="L58">        return this.kafkaProperties.getProperty(&quot;key.serializer&quot;);</span>
     }
 
     public String getValueSerializerName() {
-<span class="nc" id="L63">        return this.kafkaProperties.getProperty(&quot;value.serializer&quot;);</span>
+<span class="nc" id="L62">        return this.kafkaProperties.getProperty(&quot;value.serializer&quot;);</span>
     }
 
     public String getConsumerGroupId() {
-<span class="nc" id="L67">        return this.kafkaProperties.getProperty(&quot;consumer.group.id&quot;);</span>
+<span class="nc" id="L66">        return this.kafkaProperties.getProperty(&quot;consumer.group.id&quot;);</span>
     }
 
     public boolean getConsumerAutoCommitFlag() {
-<span class="nc" id="L71">        return this.kafkaProperties.getProperty(&quot;enable.auto.commit&quot;).equalsIgnoreCase(&quot;true&quot;);</span>
+<span class="nc" id="L70">        return this.kafkaProperties.getProperty(&quot;enable.auto.commit&quot;).equalsIgnoreCase(&quot;true&quot;);</span>
     }
 
     public String getConsumerDefaultOffsetMode() {
-<span class="nc" id="L75">        return this.kafkaProperties.getProperty(&quot;consumer.auto.offset.reset&quot;);</span>
+<span class="nc" id="L74">        return this.kafkaProperties.getProperty(&quot;consumer.auto.offset.reset&quot;);</span>
     }
 
     public int getConsumerPollingInterval() {
-<span class="nc" id="L79">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;consumer.poll.duration.milliseconds&quot;));</span>
+<span class="nc" id="L78">        return Integer.parseInt(this.kafkaProperties.getProperty(&quot;consumer.poll.duration.milliseconds&quot;));</span>
     }
 
     public String getKeyDeserializer() {
-<span class="nc" id="L83">        return this.kafkaProperties.getProperty(&quot;key.deserializer&quot;);</span>
+<span class="nc" id="L82">        return this.kafkaProperties.getProperty(&quot;key.deserializer&quot;);</span>
     }
 
     public String getValueDeserializer() {
-<span class="nc" id="L87">        return this.kafkaProperties.getProperty(&quot;value.deserializer&quot;);</span>
+<span class="nc" id="L86">        return this.kafkaProperties.getProperty(&quot;value.deserializer&quot;);</span>
     }
 
     public BrokerConfiguration getBrokerConfiguration() {
-<span class="nc" id="L91">        var returnValue = new BrokerConfiguration();</span>
-<span class="nc" id="L92">        returnValue.setBootstrapServers(this.getBootsatrapServers());</span>
-<span class="nc" id="L93">        returnValue.setTopic(this.getTopic());</span>
-<span class="nc" id="L94">        returnValue.setPartitions(this.getPartitionsCount());</span>
-<span class="nc" id="L95">        returnValue.setAutoRegisterSchemas(this.autoRegisterSchemas());</span>
-<span class="nc" id="L96">        returnValue.setPublisherBatchSize(this.getPublisherBatchSize());</span>
-<span class="nc" id="L97">        returnValue.setPublisherBufferMemory(this.getPublisherBufferMemorySize());</span>
-<span class="nc" id="L98">        returnValue.setPublisherLingerMilliseconds(this.getPublisherLingerMilliseconds());</span>
-<span class="nc" id="L99">        returnValue.setPublisherRetries(this.getPublisherRetriesCount());</span>
-<span class="nc" id="L100">        returnValue.setKeySerializer(this.getKeySerializerName());</span>
-<span class="nc" id="L101">        returnValue.setValueSerializer(this.getValueSerializerName());</span>
-<span class="nc" id="L102">        returnValue.setSchemaRegistryUrl(this.getSchemaRegistryUrl());</span>
-<span class="nc" id="L103">        returnValue.setConsumerAutoCommitFlag(this.getConsumerAutoCommitFlag());</span>
-<span class="nc" id="L104">        returnValue.setConsumerDefaultOffsetMode(this.getConsumerDefaultOffsetMode());</span>
-<span class="nc" id="L105">        returnValue.setConsumerGroupId(this.getConsumerGroupId());</span>
-<span class="nc" id="L106">        returnValue.setConsumerPollingInterval(this.getConsumerPollingInterval());</span>
-<span class="nc" id="L107">        returnValue.setKeyDeserializer(this.getKeyDeserializer());</span>
-<span class="nc" id="L108">        returnValue.setValueDeserializer(this.getValueDeserializer());</span>
+<span class="nc" id="L90">        var returnValue = new BrokerConfiguration();</span>
+<span class="nc" id="L91">        returnValue.setBootstrapServers(this.getBootsatrapServers());</span>
+<span class="nc" id="L92">        returnValue.setTopic(this.getTopic());</span>
+<span class="nc" id="L93">        returnValue.setPartitions(this.getPartitionsCount());</span>
+<span class="nc" id="L94">        returnValue.setAutoRegisterSchemas(this.autoRegisterSchemas());</span>
+<span class="nc" id="L95">        returnValue.setPublisherBatchSize(this.getPublisherBatchSize());</span>
+<span class="nc" id="L96">        returnValue.setPublisherBufferMemory(this.getPublisherBufferMemorySize());</span>
+<span class="nc" id="L97">        returnValue.setPublisherLingerMilliseconds(this.getPublisherLingerMilliseconds());</span>
+<span class="nc" id="L98">        returnValue.setPublisherRetries(this.getPublisherRetriesCount());</span>
+<span class="nc" id="L99">        returnValue.setKeySerializer(this.getKeySerializerName());</span>
+<span class="nc" id="L100">        returnValue.setValueSerializer(this.getValueSerializerName());</span>
+<span class="nc" id="L101">        returnValue.setSchemaRegistryUrl(this.getSchemaRegistryUrl());</span>
+<span class="nc" id="L102">        returnValue.setConsumerAutoCommitFlag(this.getConsumerAutoCommitFlag());</span>
+<span class="nc" id="L103">        returnValue.setConsumerDefaultOffsetMode(this.getConsumerDefaultOffsetMode());</span>
+<span class="nc" id="L104">        returnValue.setConsumerGroupId(this.getConsumerGroupId());</span>
+<span class="nc" id="L105">        returnValue.setConsumerPollingInterval(this.getConsumerPollingInterval());</span>
+<span class="nc" id="L106">        returnValue.setKeyDeserializer(this.getKeyDeserializer());</span>
+<span class="nc" id="L107">        returnValue.setValueDeserializer(this.getValueDeserializer());</span>
 
-<span class="nc" id="L110">        return returnValue;</span>
+<span class="nc" id="L109">        return returnValue;</span>
     }
 
     private void loadKafkaProperties() throws NoSuchPathException, IOException {
-<span class="nc" id="L114">        var kafkaConfigFilePath = FileSystemConfigHelper.getInstance()</span>
-<span class="nc" id="L115">                .getServiceOutputDataDefinitionDirectory(this.clientName)</span>
-<span class="nc" id="L116">                .resolve(&quot;kafka&quot;.concat(&quot;_&quot;)</span>
-<span class="nc" id="L117">                            .concat(this.recordTypeName.toLowerCase())</span>
-<span class="nc" id="L118">                            .concat(&quot;.properties&quot;));</span>
-<span class="nc" id="L119">        try(var kafkaPropertiesFile = new FileReader(kafkaConfigFilePath.toString())) {</span>
-<span class="nc" id="L120">            kafkaProperties.load(kafkaPropertiesFile);</span>
+<span class="nc" id="L113">        var kafkaConfigFilePath = FileSystemConfigHelper.getInstance()</span>
+<span class="nc" id="L114">                .getServiceOutputDataDefinitionDirectory(this.clientName)</span>
+<span class="nc" id="L115">                .resolve(&quot;kafka&quot;.concat(&quot;_&quot;)</span>
+<span class="nc" id="L116">                            .concat(this.recordTypeName.toLowerCase())</span>
+<span class="nc" id="L117">                            .concat(&quot;.properties&quot;));</span>
+<span class="nc" id="L118">        try(var kafkaPropertiesFile = new FileReader(kafkaConfigFilePath.toString())) {</span>
+<span class="nc" id="L119">            kafkaProperties.load(kafkaPropertiesFile);</span>
         }
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L121">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

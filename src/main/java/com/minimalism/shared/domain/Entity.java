@@ -68,18 +68,17 @@ public class Entity {
         return this.fields.get(fieldName);
     }
 
-    @Deprecated(forRemoval = true)
-    /**
-     * @deprecated from 2022-02-22, not required since the client app can retrieve Field by name
-     */
-    public Object getFieldValue(String fieldName) {
-        return this.fields.get(fieldName).getValue();
-    }
-
-    public String asJson() throws JsonProcessingException {
+    @Override
+    public String toString() {
+        String returnValue = null;
         JsonMapper mapper = new JsonMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        return mapper.writeValueAsString(this);
+        try {
+            returnValue = mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return returnValue;
     }
 }

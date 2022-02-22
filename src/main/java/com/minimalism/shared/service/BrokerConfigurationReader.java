@@ -2,7 +2,6 @@ package com.minimalism.shared.service;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 import com.minimalism.shared.exceptions.NoSuchPathException;
@@ -12,7 +11,7 @@ public class BrokerConfigurationReader {
     private String recordTypeName;
     private Properties kafkaProperties;
     
-    public BrokerConfigurationReader(String clientName, String recordTypeName) throws NoSuchPathException, IOException, URISyntaxException {
+    public BrokerConfigurationReader(String clientName, String recordTypeName) throws NoSuchPathException, IOException {
         this.kafkaProperties = new Properties();
         this.clientName = clientName;
         this.recordTypeName = recordTypeName;
@@ -68,7 +67,7 @@ public class BrokerConfigurationReader {
     }
 
     public boolean getConsumerAutoCommitFlag() {
-        return this.kafkaProperties.getProperty("enable.auto.commit").equalsIgnoreCase("true");
+        return this.kafkaProperties.getProperty("consumer.enable.auto.commit").equalsIgnoreCase("true");
     }
 
     public String getConsumerDefaultOffsetMode() {

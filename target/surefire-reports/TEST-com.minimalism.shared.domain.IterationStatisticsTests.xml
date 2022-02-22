@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.minimalism.shared.domain.IterationStatisticsTests" time="0.021" tests="31" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.minimalism.shared.domain.IterationStatisticsTests" time="0.022" tests="31" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\jaira\AppData\Local\Temp\surefire3362507928040560764\surefirebooter6652011368910701341.jar C:\Users\jaira\AppData\Local\Temp\surefire3362507928040560764 2022-02-09T11-42-33_869-jvmRun1 surefire9328089156979720130tmp surefire_013787418742175669820tmp"/>
+    <property name="sun.java.command" value="C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828\surefirebooter1282970906523193938.jar C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828 2022-02-20T09-39-15_634-jvmRun1 surefire14682370222253189067tmp surefire_014019905660511586840tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\test-classes;c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\classes;C:\Users\jaira\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.13.1\jackson-core-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.13.1\jackson-databind-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.13.1\jackson-annotations-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.1\jackson-datatype-jsr310-2.13.1.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\jaira\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\jaira\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\jaira\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\jaira\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jaira\AppData\Local\Temp\surefire3362507928040560764\surefirebooter6652011368910701341.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828\surefirebooter1282970906523193938.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -57,34 +57,34 @@
     <property name="java.class.version" value="61.0"/>
   </properties>
   <testcase name="testsetByteOffsetForBuffer_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetValidRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
+  <testcase name="testSetValidRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetBufferSize_with_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetMissingInformationRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetIterationNumber" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testSetIterationNumber" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testAddResidualProcessedBytes" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetByteOffsetInFile_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testToString" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.002"/>
+  <testcase name="testSetByteOffsetInFile_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
+  <testcase name="testToString" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.006"/>
   <testcase name="testSetIterationNumber_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testSetThreadName_null_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetValidRecords_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testSetProcessedBytes_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testAddResidualProcessedRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetBufferSize" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testSetBufferSize" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testSetThreadName_empty_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetInvalidRecords_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetProcessedRecords_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetByteOffsetForBuffer" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetProcessedRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
+  <testcase name="testSetProcessedRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testHashCode" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetByteOffsetInFile" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetThreadName" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
+  <testcase name="testSetThreadName" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testSetThreadName_blank_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
   <testcase name="testGetParsingDuration" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
-  <testcase name="testSetWorkerId" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
-  <testcase name="testSetProcessedBytes" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testSetWorkerId" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testSetProcessedBytes" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testSetInvalidRecords" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testSetWorkerId_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testSetWorkerId_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testGetPublishingDuration" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
-  <testcase name="testGetIterationDuration" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
+  <testcase name="testGetIterationDuration" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0.001"/>
   <testcase name="testMissingInformationRecords_negative_value" classname="com.minimalism.shared.domain.IterationStatisticsTests" time="0"/>
 </testsuite>

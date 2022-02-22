@@ -3,7 +3,6 @@ package com.minimalism.shared.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import com.minimalism.shared.exceptions.NoSuchPathException;
 
@@ -20,7 +19,7 @@ class BrokerConfigurationTests {
         try {
             BrokerConfigurationReader reader = new BrokerConfigurationReader("client_1", "hrdata");
             brokerConfiguration = reader.getBrokerConfiguration();
-        } catch (NoSuchPathException | IOException | URISyntaxException e) {
+        } catch (NoSuchPathException | IOException e) {
             e.printStackTrace();
         }
         return brokerConfiguration;

@@ -20,14 +20,14 @@ import java.time.LocalTime;
 <span class="fc" id="L20">    public enum DataTypes {</span>
 <span class="fc" id="L21">        BOOLEAN(0),</span>
 <span class="fc" id="L22">        BIG_DECIMAL(1),</span>
-<span class="fc" id="L23">        LOCAL_DATE(2),</span>
-<span class="fc" id="L24">        EMAIL(3),</span>
+<span class="fc" id="L23">        CHARACTER(2),</span>
+<span class="fc" id="L24">        DOUBLE(3),</span>
 <span class="fc" id="L25">        FLOAT(4),</span>
 <span class="fc" id="L26">        INTEGER(5),</span>
-<span class="fc" id="L27">        LONG(6),</span>
-<span class="fc" id="L28">        DOUBLE(7),</span>
-<span class="fc" id="L29">        STRING(8),</span>
-<span class="fc" id="L30">        LOCAL_TIME(9);</span>
+<span class="fc" id="L27">        LOCAL_DATE(6),</span>
+<span class="fc" id="L28">        LOCAL_TIME(7),</span>
+<span class="fc" id="L29">        LONG(8),</span>
+<span class="fc" id="L30">        STRING(9);</span>
         
         private int dataType;
 <span class="fc" id="L33">        DataTypes(int dataType) {</span>
@@ -37,98 +37,134 @@ import java.time.LocalTime;
 <span class="nc" id="L37">            return this.getType().getSimpleName();</span>
         }
 
+        public DataTypes getDataType(String typeName) {
+<span class="nc" id="L41">            DataTypes returnValue = DataTypes.STRING;</span>
+<span class="nc bnc" id="L42" title="All 10 branches missed.">            switch(typeName) {</span>
+                case &quot;Character&quot;:
+<span class="nc" id="L44">                returnValue = DataTypes.CHARACTER;</span>
+<span class="nc" id="L45">                break;</span>
+                case &quot;Boolean&quot;:
+<span class="nc" id="L47">                returnValue = DataTypes.BOOLEAN;</span>
+<span class="nc" id="L48">                break;</span>
+                case &quot;BigDecimal&quot;:
+<span class="nc" id="L50">                returnValue = DataTypes.BIG_DECIMAL;</span>
+<span class="nc" id="L51">                break;</span>
+                case &quot;Double&quot;:
+<span class="nc" id="L53">                returnValue = DataTypes.DOUBLE;</span>
+<span class="nc" id="L54">                break;</span>
+                case &quot;Float&quot;:
+<span class="nc" id="L56">                returnValue = DataTypes.FLOAT;</span>
+<span class="nc" id="L57">                break;</span>
+                case &quot;Integer&quot;:
+<span class="nc" id="L59">                returnValue = DataTypes.INTEGER;</span>
+<span class="nc" id="L60">                break;</span>
+                case &quot;LocalDate&quot;:
+<span class="nc" id="L62">                returnValue = DataTypes.LOCAL_DATE;</span>
+<span class="nc" id="L63">                break;</span>
+                case &quot;LocalTime&quot;:
+<span class="nc" id="L65">                returnValue = DataTypes.LOCAL_TIME;</span>
+<span class="nc" id="L66">                break;</span>
+                case &quot;Long&quot;:
+<span class="nc" id="L68">                returnValue = DataTypes.LONG;</span>
+<span class="nc" id="L69">                break;</span>
+                default: // default return value is STRING
+                break;                
+            }
+<span class="nc" id="L73">            return returnValue;</span>
+        }
+
         public Class&lt;?&gt; getType() {
             Class&lt;?&gt; type;
-<span class="nc bnc" id="L42" title="All 11 branches missed.">            switch (this.dataType) {</span>
+<span class="nc bnc" id="L78" title="All 11 branches missed.">            switch (this.dataType) {</span>
                 case 0:
-<span class="nc" id="L44">                type = Boolean.class;</span>
-<span class="nc" id="L45">                break;</span>
+<span class="nc" id="L80">                type = Boolean.class;</span>
+<span class="nc" id="L81">                break;</span>
                 case 1:
-<span class="nc" id="L47">                type = BigDecimal.class;</span>
-<span class="nc" id="L48">                break;</span>
+<span class="nc" id="L83">                type = BigDecimal.class;</span>
+<span class="nc" id="L84">                break;</span>
                 case 2:
-<span class="nc" id="L50">                type = LocalDate.class;</span>
-<span class="nc" id="L51">                break;</span>
+<span class="nc" id="L86">                type = Character.class;</span>
+<span class="nc" id="L87">                break;</span>
                 case 3:
-<span class="nc" id="L53">                type = String.class;</span>
-<span class="nc" id="L54">                break;</span>
+<span class="nc" id="L89">                type = Double.class;</span>
+<span class="nc" id="L90">                break;</span>
                 case 4:
-<span class="nc" id="L56">                type = Float.class;</span>
-<span class="nc" id="L57">                break;</span>
+<span class="nc" id="L92">                type = Float.class;</span>
+<span class="nc" id="L93">                break;</span>
                 case 5:
-<span class="nc" id="L59">                type = Integer.class;</span>
-<span class="nc" id="L60">                break;</span>
+<span class="nc" id="L95">                type = Integer.class;</span>
+<span class="nc" id="L96">                break;</span>
                 case 6:
-<span class="nc" id="L62">                type = Long.class;</span>
-<span class="nc" id="L63">                break;</span>
+<span class="nc" id="L98">                type = LocalDate.class;</span>
+<span class="nc" id="L99">                break;</span>
                 case 7:
-<span class="nc" id="L65">                type = Double.class;</span>
-<span class="nc" id="L66">                break;</span>
+<span class="nc" id="L101">                type = LocalTime.class;</span>
+<span class="nc" id="L102">                break;</span>
                 case 8:
-<span class="nc" id="L68">                type = String.class;</span>
-<span class="nc" id="L69">                break;</span>
+<span class="nc" id="L104">                type = Long.class;</span>
+<span class="nc" id="L105">                break;</span>
                 case 9:
-<span class="nc" id="L71">                type = LocalTime.class;</span>
-<span class="nc" id="L72">                break;</span>
+<span class="nc" id="L107">                type = String.class;</span>
+<span class="nc" id="L108">                break;</span>
                 default:
-<span class="nc" id="L74">                type = String.class;</span>
+<span class="nc" id="L110">                type = String.class;</span>
                 break;
             }
-<span class="nc" id="L77">            return type;</span>
+<span class="nc" id="L113">            return type;</span>
         }
     }
 
-<span class="nc" id="L81">    public enum Directories {</span>
-<span class="nc" id="L82">        INPUT_DATA,</span>
-<span class="nc" id="L83">        INPUT_DATA_CSV,</span>
-<span class="nc" id="L84">        INPUT_DATA_BIN,</span>
-<span class="nc" id="L85">        INPUT_DATA_DEFINITION,</span>
-<span class="nc" id="L86">        INSTRUMENTATION,</span>
-<span class="nc" id="L87">        OUTPUT_DATA,</span>
-<span class="nc" id="L88">        OUTPUT_DATA_CSV,</span>
-<span class="nc" id="L89">        OUTPUT_DATA_BIN,</span>
-<span class="nc" id="L90">        OUTPUT_DATA_DEFINITION,</span>
-<span class="nc" id="L91">        LOST_AND_FOUND,</span>
-<span class="nc" id="L92">        ARCHIVE,</span>
-<span class="nc" id="L93">        ARCHIVE_INPUT,</span>
-<span class="nc" id="L94">        ARCHIVE_INPUT_CSV,</span>
-<span class="nc" id="L95">        ARCHIVE_INPUT_BIN,</span>
-<span class="nc" id="L96">        ARCHIVE_OUTPUT,</span>
-<span class="nc" id="L97">        ARCHIVE_OUTPUT_CSV,</span>
-<span class="nc" id="L98">        ARCHIVE_OUTPUT_BIN</span>
+<span class="nc" id="L117">    public enum Directories {</span>
+<span class="nc" id="L118">        INPUT_DATA,</span>
+<span class="nc" id="L119">        INPUT_DATA_CSV,</span>
+<span class="nc" id="L120">        INPUT_DATA_BIN,</span>
+<span class="nc" id="L121">        INPUT_DATA_DEFINITION,</span>
+<span class="nc" id="L122">        INSTRUMENTATION,</span>
+<span class="nc" id="L123">        OUTPUT_DATA,</span>
+<span class="nc" id="L124">        OUTPUT_DATA_CSV,</span>
+<span class="nc" id="L125">        OUTPUT_DATA_BIN,</span>
+<span class="nc" id="L126">        OUTPUT_DATA_DEFINITION,</span>
+<span class="nc" id="L127">        LOST_AND_FOUND,</span>
+<span class="nc" id="L128">        ARCHIVE,</span>
+<span class="nc" id="L129">        ARCHIVE_INPUT,</span>
+<span class="nc" id="L130">        ARCHIVE_INPUT_CSV,</span>
+<span class="nc" id="L131">        ARCHIVE_INPUT_BIN,</span>
+<span class="nc" id="L132">        ARCHIVE_OUTPUT,</span>
+<span class="nc" id="L133">        ARCHIVE_OUTPUT_CSV,</span>
+<span class="nc" id="L134">        ARCHIVE_OUTPUT_BIN</span>
     }
 
-<span class="fc" id="L101">    public enum DataSourceTypes {</span>
-<span class="fc" id="L102">        AMQP,</span>
-<span class="fc" id="L103">        DATABASE,</span>
-<span class="fc" id="L104">        FILESYSTEM,</span>
-<span class="fc" id="L105">        PUBSUB,</span>
-<span class="fc" id="L106">        RESTFUL,</span>
-<span class="fc" id="L107">        WEBSOCKET</span>
+<span class="fc" id="L137">    public enum DataSourceTypes {</span>
+<span class="fc" id="L138">        AMQP,</span>
+<span class="fc" id="L139">        DATABASE,</span>
+<span class="fc" id="L140">        FILESYSTEM,</span>
+<span class="fc" id="L141">        PUBSUB,</span>
+<span class="fc" id="L142">        RESTFUL,</span>
+<span class="fc" id="L143">        WEBSOCKET</span>
     }
 
-<span class="fc" id="L110">    public enum DataSources {</span>
-<span class="fc" id="L111">        ACTIVE_MQ(DataSourceTypes.AMQP),</span>
-<span class="fc" id="L112">        BROKER_J(DataSourceTypes.AMQP),</span>
-<span class="fc" id="L113">        RABBIT_MQ(DataSourceTypes.AMQP),</span>
-<span class="fc" id="L114">        KAFKA(DataSourceTypes.PUBSUB),</span>
-<span class="fc" id="L115">        NTFS(DataSourceTypes.FILESYSTEM),</span>
-<span class="fc" id="L116">        UNIX_FS(DataSourceTypes.FILESYSTEM),</span>
-<span class="fc" id="L117">        GENERIC_REST(DataSourceTypes.RESTFUL),</span>
-<span class="fc" id="L118">        SPRING_BOOT(DataSourceTypes.RESTFUL),</span>
-<span class="fc" id="L119">        GENERIC_WEBSOCKET(DataSourceTypes.WEBSOCKET),</span>
-<span class="fc" id="L120">        SPRING_MVC(DataSourceTypes.WEBSOCKET),</span>
-<span class="fc" id="L121">        ASP(DataSourceTypes.RESTFUL),</span>
+<span class="fc" id="L146">    public enum DataSources {</span>
+<span class="fc" id="L147">        ACTIVE_MQ(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L148">        BROKER_J(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L149">        RABBIT_MQ(DataSourceTypes.AMQP),</span>
+<span class="fc" id="L150">        KAFKA(DataSourceTypes.PUBSUB),</span>
+<span class="fc" id="L151">        NTFS(DataSourceTypes.FILESYSTEM),</span>
+<span class="fc" id="L152">        UNIX_FS(DataSourceTypes.FILESYSTEM),</span>
+<span class="fc" id="L153">        GENERIC_REST(DataSourceTypes.RESTFUL),</span>
+<span class="fc" id="L154">        SPRING_BOOT(DataSourceTypes.RESTFUL),</span>
+<span class="fc" id="L155">        GENERIC_WEBSOCKET(DataSourceTypes.WEBSOCKET),</span>
+<span class="fc" id="L156">        SPRING_MVC(DataSourceTypes.WEBSOCKET),</span>
+<span class="fc" id="L157">        ASP(DataSourceTypes.RESTFUL),</span>
         ;
 
         private DataSourceTypes dataSourceType;
 
-<span class="fc" id="L126">        DataSources(DataSourceTypes dataSourceType) {</span>
-<span class="fc" id="L127">            this.dataSourceType = dataSourceType;</span>
-<span class="fc" id="L128">        }</span>
+<span class="fc" id="L162">        DataSources(DataSourceTypes dataSourceType) {</span>
+<span class="fc" id="L163">            this.dataSourceType = dataSourceType;</span>
+<span class="fc" id="L164">        }</span>
 
         public DataSourceTypes getDataSourceType() {
-<span class="nc" id="L131">            return this.dataSourceType;</span>
+<span class="nc" id="L167">            return this.dataSourceType;</span>
         }
 
     }
