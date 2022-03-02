@@ -67,7 +67,7 @@ public class BrokerConfigurationReader {
     }
 
     public boolean getConsumerAutoCommitFlag() {
-<span class="nc" id="L70">        return this.kafkaProperties.getProperty(&quot;enable.auto.commit&quot;).equalsIgnoreCase(&quot;true&quot;);</span>
+<span class="nc" id="L70">        return this.kafkaProperties.getProperty(&quot;consumer.enable.auto.commit&quot;).equalsIgnoreCase(&quot;true&quot;);</span>
     }
 
     public String getConsumerDefaultOffsetMode() {

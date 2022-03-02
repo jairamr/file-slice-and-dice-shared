@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.minimalism.shared.domain.FieldTests" time="0.083" tests="45" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.minimalism.shared.domain.FieldTests" time="0.11" tests="45" errors="0" skipped="0" failures="12">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\test-classes;c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\classes;C:\Users\jaira\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.13.1\jackson-core-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.13.1\jackson-databind-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.13.1\jackson-annotations-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.1\jackson-datatype-jsr310-2.13.1.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\jaira\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\jaira\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\jaira\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\jaira\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
+    <property name="java.class.path" value="c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\test-classes;c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\classes;C:\Users\jaira\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\jaira\.m2\repository\org\apache\avro\avro\1.8.1\avro-1.8.1.jar;C:\Users\jaira\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\jaira\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\jaira\.m2\repository\com\thoughtworks\paranamer\paranamer\2.7\paranamer-2.7.jar;C:\Users\jaira\.m2\repository\org\xerial\snappy\snappy-java\1.1.1.3\snappy-java-1.1.1.3.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;C:\Users\jaira\.m2\repository\org\tukaani\xz\1.5\xz-1.5.jar;C:\Users\jaira\.m2\repository\org\slf4j\slf4j-api\1.7.7\slf4j-api-1.7.7.jar;C:\Users\jaira\.m2\repository\javax\json\javax.json-api\1.1.4\javax.json-api-1.1.4.jar;C:\Users\jaira\.m2\repository\org\glassfish\javax.json\1.1.4\javax.json-1.1.4.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\jaira\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\jaira\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\jaira\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\jaira\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828\surefirebooter1282970906523193938.jar C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828 2022-02-20T09-39-15_634-jvmRun1 surefire14682370222253189067tmp surefire_014019905660511586840tmp"/>
+    <property name="sun.java.command" value="C:\Users\jaira\AppData\Local\Temp\surefire8482080764514209889\surefirebooter451045139924022806.jar C:\Users\jaira\AppData\Local\Temp\surefire8482080764514209889 2022-02-28T14-05-56_330-jvmRun1 surefire16804299959190281630tmp surefire_04400410494143897347tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\test-classes;c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\classes;C:\Users\jaira\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.13.1\jackson-core-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.13.1\jackson-databind-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.13.1\jackson-annotations-2.13.1.jar;C:\Users\jaira\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.1\jackson-datatype-jsr310-2.13.1.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\jaira\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\jaira\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\jaira\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\jaira\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
+    <property name="surefire.test.class.path" value="c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\test-classes;c:\Users\jaira\FileSliceAndDice\Git\file-slice-and-dice-shared\target\classes;C:\Users\jaira\.m2\repository\org\apache\commons\commons-text\1.9\commons-text-1.9.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\jaira\.m2\repository\org\apache\avro\avro\1.8.1\avro-1.8.1.jar;C:\Users\jaira\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\jaira\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\jaira\.m2\repository\com\thoughtworks\paranamer\paranamer\2.7\paranamer-2.7.jar;C:\Users\jaira\.m2\repository\org\xerial\snappy\snappy-java\1.1.1.3\snappy-java-1.1.1.3.jar;C:\Users\jaira\.m2\repository\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;C:\Users\jaira\.m2\repository\org\tukaani\xz\1.5\xz-1.5.jar;C:\Users\jaira\.m2\repository\org\slf4j\slf4j-api\1.7.7\slf4j-api-1.7.7.jar;C:\Users\jaira\.m2\repository\javax\json\javax.json-api\1.1.4\javax.json-api-1.1.4.jar;C:\Users\jaira\.m2\repository\org\glassfish\javax.json\1.1.4\javax.json-1.1.4.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\jaira\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\jaira\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\jaira\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\jaira\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\jaira\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\jaira\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\jaira\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\jaira"/>
     <property name="user.language" value="en"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jaira\AppData\Local\Temp\surefire10861975704957879828\surefirebooter1282970906523193938.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\jaira\AppData\Local\Temp\surefire8482080764514209889\surefirebooter451045139924022806.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -49,56 +49,104 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Java\jdk-17.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk-15.0.2\;C:\Program Files\Git\cmd;C:\Users\jaira\AppData\Local\Microsoft\WindowsApps;C:\Users\jaira\AppData\Local\Programs\Microsoft VS Code\bin;C:\Java\jdk-17.0.2\bin;C:\apache-maven-3.8.4\bin;C:\Users\jaira\AppData\Local\GitHubDesktop\bin;;."/>
+    <property name="java.library.path" value="C:\Java\jdk-17.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Java\jdk-17.0.2\;C:\Program Files\Git\cmd;C:\Users\jaira\AppData\Local\Microsoft\WindowsApps;C:\Users\jaira\AppData\Local\Programs\Microsoft VS Code\bin;C:\Java\jdk-17.0.2\bin;C:\apache-maven-3.8.4\bin;C:\Users\jaira\AppData\Local\GitHubDesktop\bin;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="17.0.2+8-LTS-86"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testGetValue_boolean_false" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testAsJson_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0.005"/>
-  <testcase name="testGetValue_local_time_as_string" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testAsJson_float" classname="com.minimalism.shared.domain.FieldTests" time="0.002"/>
-  <testcase name="testGetValue_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_boolean_false" classname="com.minimalism.shared.domain.FieldTests" time="0.01">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_false(FieldTests.java:180)
+]]></failure>
+  </testcase>
+  <testcase name="testAsJson_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_local_time_as_string" classname="com.minimalism.shared.domain.FieldTests" time="0.001">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.time.LocalTime@5b64c4b7<12:12:12> but was: java.lang.String@4763c727<12:12:12>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_time_as_string(FieldTests.java:247)
+]]></failure>
+  </testcase>
+  <testcase name="testAsJson_float" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0.001">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.math.BigDecimal@72445aba<22.22> but was: java.lang.String@61bcd567<22.22>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal(FieldTests.java:203)
+]]></failure>
+  </testcase>
   <testcase name="testAsJson_boolean" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.022"/>
-  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.019"/>
   <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
   <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
   <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetDataType(AllEnums$DataTypes)" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testGetDataTypeClassName_integer" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
   <testcase name="testGetValue_integer_as_string" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetValue_boolean_input_as_string_true" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetValue_boolean_true" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetName" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetValue_boolean_input_as_string_true" classname="com.minimalism.shared.domain.FieldTests" time="0">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@7a7471ce<true> but was: java.lang.String@28276e50<true>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_true(FieldTests.java:186)
+]]></failure>
+  </testcase>
+  <testcase name="testGetValue_boolean_true" classname="com.minimalism.shared.domain.FieldTests" time="0">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@7a7471ce<true> but was: java.lang.String@28276e50<true>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_true(FieldTests.java:174)
+]]></failure>
+  </testcase>
+  <testcase name="testGetName" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testEquals_same_name_and_data_type_are_equal" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataTypeClassName_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testAsJson_local_date" classname="com.minimalism.shared.domain.FieldTests" time="0.002"/>
+  <testcase name="testGetDataTypeClassName_bigDecimal" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testAsJson_local_date" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testAsJson_local_time" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testEquals_other_is_different_type_type_are_not_equal" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetValue_bigDecimal_value_as_String" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetValue_local_date" classname="com.minimalism.shared.domain.FieldTests" time="0.005"/>
-  <testcase name="testGetValue_local_time" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testAsJson_inetger" classname="com.minimalism.shared.domain.FieldTests" time="0.002"/>
-  <testcase name="testEquals_other_is_null_are_not_equal" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testHashCode" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetValue_boolean_input_as_string_false" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_bigDecimal_value_as_String" classname="com.minimalism.shared.domain.FieldTests" time="0">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.math.BigDecimal@3efe7086<22.22> but was: java.lang.String@675d8c96<22.22>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal_value_as_String(FieldTests.java:211)
+]]></failure>
+  </testcase>
+  <testcase name="testGetValue_local_date" classname="com.minimalism.shared.domain.FieldTests" time="0.003">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.time.LocalDate@3185fa6b<2022-02-28> but was: java.lang.String@6d366c9b<2022-02-28>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_date(FieldTests.java:229)
+]]></failure>
+  </testcase>
+  <testcase name="testGetValue_local_time" classname="com.minimalism.shared.domain.FieldTests" time="0.001">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.time.LocalTime@5b58ed3c<00:00> but was: java.lang.String@24faea88<00:00>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_time(FieldTests.java:241)
+]]></failure>
+  </testcase>
+  <testcase name="testAsJson_inetger" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testEquals_other_is_null_are_not_equal" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testHashCode" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_boolean_input_as_string_false" classname="com.minimalism.shared.domain.FieldTests" time="0.001">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_false(FieldTests.java:192)
+]]></failure>
+  </testcase>
   <testcase name="testAsJson_long" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataTypeClassName_double" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetDataTypeClassName_double" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
   <testcase name="testAsJson_double" classname="com.minimalism.shared.domain.FieldTests" time="0.002"/>
-  <testcase name="testGetValue_local_date_as_string" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetValue_integer" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataTypeClassName_boolean" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetDataTypeClassName_float" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
-  <testcase name="testGetValue_boolean_input_as_string_random" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetValue_local_date_as_string" classname="com.minimalism.shared.domain.FieldTests" time="0.001">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.time.LocalDate@3a320ade<2022-02-03> but was: java.lang.String@64beebb7<2022-02-03>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_date_as_string(FieldTests.java:235)
+]]></failure>
+  </testcase>
+  <testcase name="testGetValue_integer" classname="com.minimalism.shared.domain.FieldTests" time="0">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Integer@7813cb11<33> but was: java.lang.String@bcec031<33>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_integer(FieldTests.java:217)
+]]></failure>
+  </testcase>
+  <testcase name="testGetDataTypeClassName_boolean" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetDataTypeClassName_float" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
+  <testcase name="testGetValue_boolean_input_as_string_random" classname="com.minimalism.shared.domain.FieldTests" time="0">
+    <failure type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_random(FieldTests.java:197)
+]]></failure>
+  </testcase>
   <testcase name="testGetDataTypeClassName_localDate" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
-  <testcase name="testGetDataTypeClassName_localTime" classname="com.minimalism.shared.domain.FieldTests" time="0"/>
+  <testcase name="testGetDataTypeClassName_localTime" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testGetDataTypeClassName_string" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
   <testcase name="testAsJson_string" classname="com.minimalism.shared.domain.FieldTests" time="0.001"/>
 </testsuite>

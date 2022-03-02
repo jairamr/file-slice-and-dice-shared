@@ -4,82 +4,85 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 public class Entity {
     private String name;
     private String targetDomainName;
     private Map&lt;String, Field&gt; fields;
 
-<span class="fc" id="L18">    public Entity() {</span>
-<span class="fc" id="L19">        this.fields = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L17">    public Entity() {</span>
+<span class="fc" id="L18">        this.fields = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L19">    }</span>
 
     public String getName() {
-<span class="fc" id="L23">        return name;</span>
+<span class="fc" id="L22">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="pc bpc" id="L27" title="2 of 6 branches missed.">        if(name == null || name.isEmpty() || name.isBlank()) {</span>
-<span class="fc" id="L28">            throw new IllegalArgumentException(&quot;Entity name cannot be null or empty.&quot;);</span>
+<span class="pc bpc" id="L26" title="2 of 6 branches missed.">        if(name == null || name.isEmpty() || name.isBlank()) {</span>
+<span class="fc" id="L27">            throw new IllegalArgumentException(&quot;Entity name cannot be null or empty.&quot;);</span>
         }
-<span class="fc" id="L30">        this.name = name;</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L29">        this.name = name;</span>
+<span class="fc" id="L30">    }</span>
 
     public String getTargetDomainName() {
-<span class="fc" id="L34">        return targetDomainName;</span>
+<span class="fc" id="L33">        return targetDomainName;</span>
     }
 
     public void setTargetDomainName(String targetDomainName) {
-<span class="pc bpc" id="L38" title="3 of 6 branches missed.">        if(targetDomainName == null || targetDomainName.isEmpty() || targetDomainName.isBlank()) {</span>
-<span class="nc" id="L39">            targetDomainName = &quot;target.domain.name&quot;;</span>
+<span class="pc bpc" id="L37" title="3 of 6 branches missed.">        if(targetDomainName == null || targetDomainName.isEmpty() || targetDomainName.isBlank()) {</span>
+<span class="nc" id="L38">            targetDomainName = &quot;target.domain.name&quot;;</span>
         }
-<span class="fc" id="L41">        this.targetDomainName = targetDomainName;</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L40">        this.targetDomainName = targetDomainName;</span>
+<span class="fc" id="L41">    }</span>
 
     public Map&lt;String, Field&gt; getFields() {
-<span class="fc" id="L45">        return fields;</span>
+<span class="fc" id="L44">        return fields;</span>
     }
 
-    @JsonIgnore
     public List&lt;Field&gt; getListOfFields() {
-<span class="fc" id="L50">        return this.fields.values().stream().toList();</span>
+<span class="fc" id="L48">        return this.fields.values().stream().toList();</span>
     }
 
     public void setFields(Map&lt;String, Field&gt; fields) {
-<span class="nc" id="L54">        this.fields = fields;</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L52">        this.fields = fields;</span>
+<span class="nc" id="L53">    }</span>
 
     public void setFields(List&lt;Field&gt; listOfFields) {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        for(Field f : listOfFields) {</span>
-<span class="fc" id="L59">            this.fields.put(f.getName(), f);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for(Field f : listOfFields) {</span>
+<span class="fc" id="L57">            this.fields.put(f.getName(), f);</span>
         }
-<span class="fc" id="L61">    }</span>
+<span class="fc" id="L59">    }</span>
     
     public void addField(Field field) {
-<span class="fc" id="L64">        this.fields.put(field.getName(), field);</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L62">        this.fields.put(field.getName(), field);</span>
+<span class="fc" id="L63">    }</span>
 
     public Field getField(String fieldName) {
-<span class="fc" id="L68">        return this.fields.get(fieldName);</span>
+<span class="fc" id="L66">        return this.fields.get(fieldName);</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L73">        String returnValue = null;</span>
-<span class="fc" id="L74">        JsonMapper mapper = new JsonMapper();</span>
-<span class="fc" id="L75">        mapper.registerModule(new JavaTimeModule());</span>
-<span class="fc" id="L76">        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</span>
-        try {
-<span class="fc" id="L78">            returnValue = mapper.writeValueAsString(this);</span>
-<span class="pc" id="L79">        } catch (JsonProcessingException e) {</span>
-<span class="nc" id="L80">            e.printStackTrace();</span>
-        }
-<span class="fc" id="L82">        return returnValue;</span>
+<span class="fc" id="L71">        String returnValue = null;</span>
+<span class="fc" id="L72">        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();</span>
+<span class="fc" id="L73">        fields.values().forEach(f -&gt; arrayBuilder.add(f.asJson()));</span>
+<span class="fc" id="L74">        JsonObjectBuilder fieldsBuilder = Json.createObjectBuilder();</span>
+<span class="fc" id="L75">        this.fields.entrySet().stream().map((Map.Entry&lt;String, Field&gt; e) -&gt;</span>
+<span class="fc" id="L76">            Json.createObjectBuilder()</span>
+<span class="fc" id="L77">                .add(e.getKey(), e.getValue().asJson())).forEach(fieldsBuilder::addAll);</span>
+        
+<span class="fc" id="L79">        JsonObject jsonObject = Json.createObjectBuilder()</span>
+<span class="fc" id="L80">            .add(&quot;name&quot;, this.getName())</span>
+<span class="fc" id="L81">            .add(&quot;targetDomainName&quot;, this.getTargetDomainName())</span>
+<span class="fc" id="L82">            .add(&quot;fields&quot;, fieldsBuilder.build())</span>
+<span class="fc" id="L83">            .build();</span>
+<span class="fc" id="L84">        returnValue = jsonObject.toString();</span>
+<span class="fc" id="L85">        return returnValue;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

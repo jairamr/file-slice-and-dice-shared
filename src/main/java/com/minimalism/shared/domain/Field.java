@@ -1,15 +1,16 @@
 package com.minimalism.shared.domain;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javax.json.Json;
+import javax.json.JsonObject;
+
 import com.minimalism.shared.common.AllEnums.DataTypes;
 
 import org.apache.commons.text.CaseUtils;
@@ -39,7 +40,6 @@ public class Field {
         return dataType;
     }
 
-    @JsonGetter("dataType")
     public String dataTypeClassName() {
         return CaseUtils.toCamelCase(this.getDataType().name(), true, '_');
     }
@@ -48,33 +48,34 @@ public class Field {
         this.dataType = dataType;
     }
 
-    public Object getValue() {
-        return value;
+    public String getValue() {
+        return value.toString();
     }
 
     public void setValue(Object value) {
         setValueAsTargetType(value);
     }
 
-    public String asJson() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        return mapper.writeValueAsString(this);
+    public JsonObject asJson() {
+        return Json.createObjectBuilder()
+            .add("name", this.getName())
+            .add("dataType", CaseUtils.toCamelCase(this.getDataType().name(), true, '_'))
+            .add("value", this.value.toString())
+            .build();
     }
 
-    public String getAvroSchemaJson() {
-        org.apache.avro.Schema avroField = org.apache.avro.SchemaBuilder
-        .record("Field").namespace("com.minimalism.shared.domain")
-            .fields()//.requiredLong("requestTime")
-                .name("name").type("string").noDefault()
-                .name("dataType").type(this.dataType.getTypeName()).withDefault(DataTypes.STRING.name())
-                .name("value").type(this.dataType.getTypeName().toLowerCase())
-                .noDefault()
-            .endRecord();
+    // public String getAvroSchemaJson() {
+    //     org.apache.avro.Schema avroField = org.apache.avro.SchemaBuilder
+    //     .record("Field").namespace("com.minimalism.shared.domain")
+    //         .fields()//.requiredLong("requestTime")
+    //             .name("name").type("string").noDefault()
+    //             .name("dataType").type(this.dataType.getTypeName()).withDefault(DataTypes.STRING.name())
+    //             .name("value").type(this.dataType.getTypeName().toLowerCase())
+    //             .noDefault()
+    //         .endRecord();
             
-        return avroField.toString();
-    }
+    //     return avroField.toString();
+    // }
 
     private void setValueAsTargetType(Object value) {
         if(value == null) {
@@ -84,31 +85,39 @@ public class Field {
         String temp = String.valueOf(value);
         switch(this.getDataType()) {
             case BOOLEAN:
-            this.value = Boolean.parseBoolean(temp);
+            TypeConverter<Boolean> tcb = new TypeConverter<>(Boolean.class);
+            this.value = tcb.convert(value);
             break;
             case BIG_DECIMAL:
-            this.value = new BigDecimal(temp);
+            TypeConverter<BigDecimal> tcbd = new TypeConverter<>(BigDecimal.class);
+            this.value = tcbd.convert(value);
             break;
             case DOUBLE:
-            this.value = Double.parseDouble(temp);
+            TypeConverter<Double> tcd = new TypeConverter<>(Double.class);
+            this.value = tcd.convert(value);
             break;
             case FLOAT:
-            this.value = Float.parseFloat(temp);
+            TypeConverter<Float> tcf = new TypeConverter<>(Float.class);
+            this.value = tcf.convert(value);
             break;
             case INTEGER:
-            this.value= Integer.parseInt(temp);
+            TypeConverter<Integer> tci = new TypeConverter<>(Integer.class);
+            this.value = tci.convert(value);
             break;
             case LOCAL_DATE:
-            this.value = LocalDate.parse(temp);
+            TypeConverter<LocalDate> tcld = new TypeConverter<>(LocalDate.class);
+            this.value = tcld.convert(value);
             break;
             case LOCAL_TIME:
-            this.value = LocalTime.parse(temp);
+            TypeConverter<LocalTime> tclt = new TypeConverter<>(LocalTime.class);
+            this.value = tclt.convert(value);
             break;
             case LONG:
-            this.value = Long.parseLong(temp);
+            TypeConverter<Long> tcl = new TypeConverter<>(Long.class);
+            this.value = tcl.convert(value);
             break;
             case STRING:
-            this.value = temp;
+                this.value = temp;
             break;
             default:
             this.value = temp;
@@ -117,13 +126,7 @@ public class Field {
 
     @Override
     public String toString() {
-        String returnValue = null;
-        try {
-            returnValue = this.asJson();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return returnValue;
+        return this.asJson().toString();
     }
 
     @Override
@@ -137,6 +140,68 @@ public class Field {
         if(other == null) return false;
         if(!(other instanceof Field)) return false;
         return this.hashCode() == other.hashCode();
+    }
+
+    protected class TypeConverter<T> {
+        private Class<T> type;
+
+        public TypeConverter(Class<T> type) {
+            this.type = type;
+        }
+
+        private BigDecimal toBigDecimal(String value) {
+            return new BigDecimal(value);
+        }
+
+        protected T convert(Object value) {
+            T returnValue = null;
+            if(type.isInstance(value)) {
+                returnValue = type.cast(value);
+            } else {
+                returnValue = type.cast(assignFromString(value.toString()));
+            }
+            return returnValue;
+        }
+
+        private Object fromStaticMethod(Method m, String value) {
+            Object returnValue = null;
+            try {
+                returnValue = m.invoke(null, value);
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return returnValue;
+        }
+
+        private Object fromPublicMethod(Method m, String value) {
+            Object returnValue = null;
+            try {
+                Class<?>[] paramTypes = null;
+                returnValue = type.cast(m.invoke(type.getDeclaredConstructor(paramTypes)
+                    .newInstance((Object[])paramTypes), value));
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                        | InstantiationException | NoSuchMethodException | SecurityException e) {
+                    e.printStackTrace();
+            }
+            return returnValue;
+        }
+
+        private Object assignFromString(String value) {
+            if(type.isAssignableFrom(java.math.BigDecimal.class)) {
+                return this.toBigDecimal(value);
+            }
+            Method[] methods = type.getDeclaredMethods();
+            for(Method m : methods) {
+                if(m.getName().contains("parse")) {
+                    if(Modifier.isStatic(m.getModifiers()) && m.getParameterCount() == 1) {
+                        return fromStaticMethod(m, value);
+                    } else if(Modifier.isPublic(m.getModifiers()) && m.getParameterCount() == 1) {
+                        return fromPublicMethod(m, value);
+                    }
+                }
+            }
+            return value;
+        }
     }
     
 }

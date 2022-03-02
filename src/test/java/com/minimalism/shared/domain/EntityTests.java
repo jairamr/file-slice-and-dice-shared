@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.minimalism.shared.common.AllEnums.DataTypes;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -63,96 +62,69 @@ class EntityTests {
     
         System.out.println(iut.toString());
         assertEquals("{\"name\":\"testEntity\",\"targetDomainName\":\"com.minimalism.entity\"," + 
-        "\"fields\":{\"field_four\":{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":44.44}," + 
+        "\"fields\":{\"field_four\":{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":\"44.44\"}," + 
         "\"field_six\":{\"name\":\"field_six\",\"dataType\":\"LocalDate\",\"value\":\"2022-02-04\"}," + 
-        "\"field_eight\":{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":33}," + 
-        "\"field_three\":{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":33.33}," + 
+        "\"field_eight\":{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":\"33\"}," + 
+        "\"field_three\":{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":\"33.33\"}," + 
         "\"field_seven\":{\"name\":\"field_seven\",\"dataType\":\"LocalTime\",\"value\":\"12:12:12\"}," + 
         "\"field_nine\":{\"name\":\"field_nine\",\"dataType\":\"String\",\"value\":\"test string\"}," + 
-        "\"field_two\":{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":true}," + 
-        "\"field_five\":{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":22}," + 
-        "\"field_one\":{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":22.22}}}", iut.toString());
+        "\"field_two\":{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":\"true\"}," + 
+        "\"field_five\":{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":\"22\"}," + 
+        "\"field_one\":{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":\"22.22\"}}}", iut.toString());
     }
 
     @Test
     void testGetField_field_one() {
-        try {
-            assertEquals("{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":22.22}", iut.getField("field_one").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_one\",\"dataType\":\"BigDecimal\",\"value\":\"22.22\"}", 
+                        iut.getField("field_one").asJson().toString());
     }
 
     @Test
     void testGetField_field_two() {
-        try {
-            assertEquals("{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":true}", iut.getField("field_two").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_two\",\"dataType\":\"Boolean\",\"value\":\"true\"}", 
+                        iut.getField("field_two").asJson().toString());
     }
 
     @Test
     void testGetField_field_three() {
-        try {
-            assertEquals("{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":33.33}", iut.getField("field_three").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_three\",\"dataType\":\"Double\",\"value\":\"33.33\"}", 
+                        iut.getField("field_three").asJson().toString());
     }
 
     @Test
     void testGetField_field_four() {
-        try {
-            assertEquals("{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":44.44}", iut.getField("field_four").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_four\",\"dataType\":\"Float\",\"value\":\"44.44\"}", 
+                        iut.getField("field_four").asJson().toString());
     }
 
     @Test
     void testGetField_field_five() {
-        try {
-            assertEquals("{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":22}", iut.getField("field_five").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_five\",\"dataType\":\"Integer\",\"value\":\"22\"}", 
+                        iut.getField("field_five").asJson().toString());
     }
 
     @Test
     void testGetField_field_six() {
-        try {
-            assertEquals("{\"name\":\"field_six\",\"dataType\":\"LocalDate\",\"value\":\"2022-02-04\"}", iut.getField("field_six").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_six\",\"dataType\":\"LocalDate\",\"value\":\"2022-02-04\"}", 
+                        iut.getField("field_six").asJson().toString());
     }
 
     @Test
     void testGetField_field_seven() {
-        try {
-            assertEquals("{\"name\":\"field_seven\",\"dataType\":\"LocalTime\",\"value\":\"12:12:12\"}", iut.getField("field_seven").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_seven\",\"dataType\":\"LocalTime\",\"value\":\"12:12:12\"}", 
+                        iut.getField("field_seven").asJson().toString());
     }
 
     @Test
     void testGetField_field_eight() {
-        try {
-            assertEquals("{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":33}", iut.getField("field_eight").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        assertEquals("{\"name\":\"field_eight\",\"dataType\":\"Long\",\"value\":\"33\"}", 
+                        iut.getField("field_eight").asJson().toString());
     }
 
     @Test
     void testGetField_field_nine() {
-        try {
-            assertEquals("{\"name\":\"field_nine\",\"dataType\":\"String\",\"value\":\"test string\"}", iut.getField("field_nine").asJson());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+            assertEquals("{\"name\":\"field_nine\",\"dataType\":\"String\",\"value\":\"test string\"}", 
+                            iut.getField("field_nine").asJson().toString());
     }
 
     @Test

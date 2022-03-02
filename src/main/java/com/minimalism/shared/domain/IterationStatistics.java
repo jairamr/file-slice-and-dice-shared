@@ -2,20 +2,9 @@ package com.minimalism.shared.domain;
 
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.json.Json;
+import javax.json.JsonObject;
 
-@JsonPropertyOrder({
-    "iterationNumber","workerId","threadName",
-    "bufferSize","byteOffsetInFile","byteOffsetForBuffer",
-    "processedBytes","processedRecords","validRecords",
-    "invalidRecords","missingInformationRecords","iterationDuration",
-    "parsingDuration","publishingDuration"
-})
 public class IterationStatistics {
     private int iterationNumber;
     private long workerId;
@@ -35,12 +24,10 @@ public class IterationStatistics {
     private int invalidRecords;
     private int missingInformationRecords;
 
-    @JsonGetter("workerId")
     public long getWorkerId() {
         return workerId;
     }
 
-    @JsonSetter("workerId")
     public void setWorkerId(long workerId) {
         if(workerId < 0) {
             workerId = 0;
@@ -48,12 +35,10 @@ public class IterationStatistics {
         this.workerId = workerId;
     }
 
-    @JsonGetter("threadName")
     public String getThreadName() {
         return threadName;
     }
 
-    @JsonSetter("threadName")
     public void setThreadName(String threadName) {
         if(threadName == null || threadName.isEmpty() || threadName.isBlank()) {
             threadName = "no_name";
@@ -61,12 +46,10 @@ public class IterationStatistics {
         this.threadName = threadName;
     }
 
-    @JsonGetter("iterationNumber")
     public int getIterationNumber() {
         return this.iterationNumber;
     }
 
-    @JsonSetter("iterationNumber")
     public void setIterationNumber(int iterationNumber) {
         if(iterationNumber < 0) {
             iterationNumber = 0;
@@ -74,11 +57,10 @@ public class IterationStatistics {
         this.iterationNumber = iterationNumber;
     }
 
-    @JsonGetter("bufferSize")
     public int getBufferSize() {
         return bufferSize;
     }
-    @JsonSetter("bufferSize")
+    
     public void setBufferSize(int bufferSize) {
         //if negative, set as zero
         if(bufferSize < 0) {
@@ -87,12 +69,10 @@ public class IterationStatistics {
         this.bufferSize = bufferSize;
     }
 
-    @JsonGetter("byteOffsetInFile")
     public long getByteOffsetInFile() {
         return this.byteOffsetInFile;
     }
 
-    @JsonSetter("byteOffsetInFile")
     public void setByteOffsetInFile(long offsetInFile) {
         if(offsetInFile < 0) {
             offsetInFile = 0;
@@ -100,12 +80,10 @@ public class IterationStatistics {
         this.byteOffsetInFile = offsetInFile;
     }
 
-    @JsonGetter("byteOffsetForBuffer")
     public long getByteOffsetForBuffer() {
         return this.byteOffsetForBuffer;
     }
 
-    @JsonSetter("byteOffsetForBuffer")
     public void setByteOffsetForBuffer(long offsetForBuffer) {
         if(offsetForBuffer < 0) {
             offsetForBuffer = 0;
@@ -113,60 +91,49 @@ public class IterationStatistics {
         this.byteOffsetForBuffer = offsetForBuffer;
     }
 
-    @JsonSetter("parsingStartTime")
     public void setParsingStartTime(long parsingStartTime) {
         this.parsingStartTime = parsingStartTime;
     }
 
-    @JsonSetter("publishingStartTime")
     public void setPublishingStartTime(long publishingStartTime) {
         this.publishingStartTime = publishingStartTime;
     }
 
-    @JsonSetter("parsingEndTime")
     public void setParsingEndTime(long parsingEndTime) {
         this.parsingEndTime = parsingEndTime;
         this.publishingStartTime = parsingEndTime;
     }
 
-    @JsonSetter("publishingEndTime")
     public void setPublishingEndTime(long publishingEndTime) {
         this.publishingEndTime = publishingEndTime;
     }
 
-    @JsonGetter("parsingDuration")
     public long getParsingDuration() {
         return this.parsingEndTime - this.parsingStartTime;
     }
 
-    @JsonGetter("publishingDuration")
     public long getPublishingDuration() {
         return this.publishingEndTime - this.publishingStartTime;
     }
 
-    @JsonSetter("iterationStartTime")
     public void setIterationStartTime(long iterationStartTime) {
         this.iterationStartTime = iterationStartTime;
         this.parsingStartTime = iterationStartTime;
     }
 
-    @JsonSetter("iterationEndTime")
     public void setIterationEndTime(long iterationEndTime) {
         this.iterationEndTime = iterationEndTime;
         this.publishingEndTime = iterationEndTime;
     }
 
-    @JsonGetter("iterationDuration")
     public long getIterationDuration() {
         return this.iterationEndTime - this.iterationStartTime;
     }
 
-    @JsonGetter("processedBytes")
     public long getProcessedBytes() {
         return processedBytes;
     }
 
-    @JsonSetter("processedBytes")
     public void setProcessedBytes(long processedBytes) {
         if(processedBytes < 0) {
             processedBytes = 0;
@@ -174,12 +141,10 @@ public class IterationStatistics {
         this.processedBytes = processedBytes;
     }
 
-    @JsonGetter("processedRecords")
     public int getProcessedRecords() {
         return processedRecords;
     }
 
-    @JsonSetter("processedRecords")
     public void setProcessedRecords(int processedRecords) {
         if(processedRecords < 0) {
             processedRecords = 0;
@@ -187,12 +152,10 @@ public class IterationStatistics {
         this.processedRecords = processedRecords;
     }
 
-    @JsonGetter("validRecords")
     public int getValidRecords() {
         return validRecords;
     }
 
-    @JsonSetter("validRecords")
     public void setValidRecords(int validRecords) {
         if(validRecords < 0) {
             validRecords = 0;
@@ -200,12 +163,10 @@ public class IterationStatistics {
         this.validRecords = validRecords;
     }
 
-    @JsonGetter("invalidRecords")
     public int getInvalidRecords() {
         return invalidRecords;
     }
 
-    @JsonSetter("invalidRecords")
     public void setInvalidRecords(int invalidRecords) {
         if(invalidRecords < 0) {
             invalidRecords = 0;
@@ -213,12 +174,10 @@ public class IterationStatistics {
         this.invalidRecords = invalidRecords;
     }
 
-    @JsonGetter("missingInformationRecords")
     public int getMissingInformationRecords() {
         return missingInformationRecords;
     }
 
-    @JsonSetter("missingInformationRecords")
     public void setMissingInformationRecords(int missingInformationRecords) {
         if(missingInformationRecords < 0) {
             missingInformationRecords = 0;
@@ -226,14 +185,31 @@ public class IterationStatistics {
         this.missingInformationRecords = missingInformationRecords;
     }
 
+    public JsonObject asJson() {
+        return Json.createObjectBuilder()
+                    .add("iterationNumber", this.getIterationNumber())
+                    .add("workerId", this.getWorkerId())
+                    .add("threadName", this.getThreadName())
+                    .add("bufferSize", this.getBufferSize())
+                    .add("byteOffsetInFile", this.getByteOffsetInFile())
+                    .add("byteOffsetForBuffer", this.getByteOffsetForBuffer())
+                    .add("processedBytes", this.getProcessedBytes())
+                    .add("processedRecords", this.getProcessedRecords())
+                    .add("validRecords", this.getValidRecords())
+                    .add("invalidRecords", this.getInvalidRecords())
+                    .add("missingInformationRecords", this.getMissingInformationRecords())
+                    .add("iterationDuration", this.getIterationDuration())
+                    .add("parsingDuration", this.getParsingDuration())
+                    .add("publishingDuration", this.getPublishingDuration())
+                    .build();
+    }
+
     @Override
-    @JsonIgnore
     public int hashCode() {
         return Objects.hash(this.threadName, this.workerId, this.iterationNumber);
     }
 
     @Override
-    @JsonIgnore
     public boolean equals(Object other) {
         if(other == null)
             return false;
@@ -243,16 +219,8 @@ public class IterationStatistics {
     }
 
     @Override
-    @JsonIgnore
     public String toString() {
-        String returnValue = null;
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            returnValue = mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return returnValue;
+        return this.asJson().toString();
     }
 
     public void addResidualProcessedBytes(int residualBytes) {

@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 public class Entity {
     private String name;
@@ -45,7 +44,6 @@ public class Entity {
         return fields;
     }
 
-    @JsonIgnore
     public List<Field> getListOfFields() {
         return this.fields.values().stream().toList();
     }
@@ -71,14 +69,19 @@ public class Entity {
     @Override
     public String toString() {
         String returnValue = null;
-        JsonMapper mapper = new JsonMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        try {
-            returnValue = mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        fields.values().forEach(f -> arrayBuilder.add(f.asJson()));
+        JsonObjectBuilder fieldsBuilder = Json.createObjectBuilder();
+        this.fields.entrySet().stream().map((Map.Entry<String, Field> e) ->
+            Json.createObjectBuilder()
+                .add(e.getKey(), e.getValue().asJson())).forEach(fieldsBuilder::addAll);
+        
+        JsonObject jsonObject = Json.createObjectBuilder()
+            .add("name", this.getName())
+            .add("targetDomainName", this.getTargetDomainName())
+            .add("fields", fieldsBuilder.build())
+            .build();
+        returnValue = jsonObject.toString();
         return returnValue;
     }
 }

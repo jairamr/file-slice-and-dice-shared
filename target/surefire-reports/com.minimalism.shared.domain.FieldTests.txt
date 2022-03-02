@@ -1,4 +1,52 @@
 -------------------------------------------------------------------------------
 Test set: com.minimalism.shared.domain.FieldTests
 -------------------------------------------------------------------------------
-Tests run: 45, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 s - in com.minimalism.shared.domain.FieldTests
+Tests run: 45, Failures: 12, Errors: 0, Skipped: 0, Time elapsed: 0.11 s <<< FAILURE! - in com.minimalism.shared.domain.FieldTests
+com.minimalism.shared.domain.FieldTests.testGetValue_boolean_false  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_false(FieldTests.java:180)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_local_time_as_string  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.time.LocalTime@5b64c4b7<12:12:12> but was: java.lang.String@4763c727<12:12:12>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_time_as_string(FieldTests.java:247)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.math.BigDecimal@72445aba<22.22> but was: java.lang.String@61bcd567<22.22>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal(FieldTests.java:203)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_true  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@7a7471ce<true> but was: java.lang.String@28276e50<true>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_true(FieldTests.java:186)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_boolean_true  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@7a7471ce<true> but was: java.lang.String@28276e50<true>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_true(FieldTests.java:174)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal_value_as_String  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.math.BigDecimal@3efe7086<22.22> but was: java.lang.String@675d8c96<22.22>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_bigDecimal_value_as_String(FieldTests.java:211)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_local_date  Time elapsed: 0.003 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.time.LocalDate@3185fa6b<2022-02-28> but was: java.lang.String@6d366c9b<2022-02-28>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_date(FieldTests.java:229)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_local_time  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.time.LocalTime@5b58ed3c<00:00> but was: java.lang.String@24faea88<00:00>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_time(FieldTests.java:241)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_false  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_false(FieldTests.java:192)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_local_date_as_string  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.time.LocalDate@3a320ade<2022-02-03> but was: java.lang.String@64beebb7<2022-02-03>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_local_date_as_string(FieldTests.java:235)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_integer  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Integer@7813cb11<33> but was: java.lang.String@bcec031<33>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_integer(FieldTests.java:217)
+
+com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_random  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: java.lang.Boolean@2ece4966<false> but was: java.lang.String@1dd0e7c4<false>
+	at com.minimalism.shared.domain.FieldTests.testGetValue_boolean_input_as_string_random(FieldTests.java:197)
+

@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IngestServiceSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">file-slice-and-dice-shared</a> &gt; <a href="index.source.html" class="el_package">com.minimalism.shared.domain</a> &gt; <span class="el_source">IngestServiceSummary.java</span></div><h1>IngestServiceSummary.java</h1><pre class="source lang-java linenums">package com.minimalism.shared.domain;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 
-@JsonPropertyOrder({
-    &quot;fileName&quot;, &quot;recordName&quot;, &quot;processingDate&quot;,
-    &quot;numberOfIterations&quot;, &quot;totalRecordsProcessed&quot;, &quot;totalBytesProcessed&quot;,
-    &quot;processingTime&quot;, &quot;iterationStatistics&quot;
-})
 public class IngestServiceSummary {
     private String fileName;
     private String recordName;
@@ -22,129 +17,117 @@ public class IngestServiceSummary {
 
     private Set&lt;IterationStatistics&gt; iterationsStats;
     
-<span class="fc" id="L25">    public IngestServiceSummary() {</span>
-<span class="fc" id="L26">        iterationsStats = new HashSet&lt;&gt;();</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L20">    public IngestServiceSummary() {</span>
+<span class="fc" id="L21">        iterationsStats = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L22">    }</span>
 
     public String getFileName() {
-<span class="fc" id="L30">        return fileName;</span>
+<span class="fc" id="L25">        return fileName;</span>
     }
 
     public void setFileName(String fileName) {
-<span class="fc bfc" id="L34" title="All 6 branches covered.">        if(fileName == null || fileName.isEmpty() || fileName.isBlank()) {</span>
-<span class="fc" id="L35">            fileName = &quot;no_name_available&quot;;</span>
+<span class="fc bfc" id="L29" title="All 6 branches covered.">        if(fileName == null || fileName.isEmpty() || fileName.isBlank()) {</span>
+<span class="fc" id="L30">            fileName = &quot;no_name_available&quot;;</span>
         }
-<span class="fc" id="L37">        this.fileName = fileName;</span>
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L32">        this.fileName = fileName;</span>
+<span class="fc" id="L33">    }</span>
 
     public String getRecordName() {
-<span class="fc" id="L41">        return recordName;</span>
+<span class="fc" id="L36">        return recordName;</span>
     }
     public void setRecordName(String recordName) {
-<span class="fc bfc" id="L44" title="All 6 branches covered.">        if(recordName == null || recordName.isEmpty() || recordName.isBlank()) {</span>
-<span class="fc" id="L45">            recordName = &quot;no_name_available&quot;;</span>
+<span class="fc bfc" id="L39" title="All 6 branches covered.">        if(recordName == null || recordName.isEmpty() || recordName.isBlank()) {</span>
+<span class="fc" id="L40">            recordName = &quot;no_name_available&quot;;</span>
         }
-<span class="fc" id="L47">        this.recordName = recordName;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L42">        this.recordName = recordName;</span>
+<span class="fc" id="L43">    }</span>
 
     public LocalDate getProcessingDate() {
-<span class="fc" id="L51">        return processingDate;</span>
+<span class="fc" id="L46">        return processingDate;</span>
     }
 
     public void setProcessingDate(LocalDate processingDate) {
-<span class="fc" id="L55">        this.processingDate = processingDate;</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L50">        this.processingDate = processingDate;</span>
+<span class="fc" id="L51">    }</span>
 
     public void addStat(IterationStatistics stat) {
-<span class="fc" id="L59">        this.iterationsStats.add(stat);</span>
-<span class="fc" id="L60">    }</span>
+<span class="fc" id="L54">        this.iterationsStats.add(stat);</span>
+<span class="fc" id="L55">    }</span>
 
-    @JsonGetter(&quot;iterationStatistics&quot;)
     public Set&lt;IterationStatistics&gt; getStats() {
-<span class="fc" id="L64">        return this.iterationsStats;</span>
+<span class="fc" id="L58">        return this.iterationsStats;</span>
     }
 
     public void setStats(Set&lt;IterationStatistics&gt; stats) {
-<span class="fc" id="L68">        this.iterationsStats = stats;</span>
-<span class="fc" id="L69">    }</span>
+<span class="fc" id="L62">        this.iterationsStats = stats;</span>
+<span class="fc" id="L63">    }</span>
 
     public IterationStatistics getStatsFor(int iterationNumber) {
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(iterationNumber &lt; 0) {</span>
-<span class="nc" id="L73">            return null;</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        } else if(iterationNumber &gt;= this.numberOfIterations()) {</span>
-<span class="nc" id="L75">            return null;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if(iterationNumber &lt; 0) {</span>
+<span class="nc" id="L67">            return null;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        } else if(iterationNumber &gt;= this.numberOfIterations()) {</span>
+<span class="nc" id="L69">            return null;</span>
         } else {
-<span class="nc" id="L77">            return this.iterationsStats.stream()</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">                    .filter(is -&gt; is.getIterationNumber() == iterationNumber)</span>
-<span class="nc" id="L79">                    .findFirst()</span>
-<span class="nc" id="L80">                    .orElse(null);</span>
+<span class="nc" id="L71">            return this.iterationsStats.stream()</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                    .filter(is -&gt; is.getIterationNumber() == iterationNumber)</span>
+<span class="nc" id="L73">                    .findFirst()</span>
+<span class="nc" id="L74">                    .orElse(null);</span>
         }
     }
 
     public boolean inputFileHadInvalidRecords() {
-<span class="fc" id="L85">        return !this.iterationsStats.stream()</span>
-<span class="fc bfc" id="L86" title="All 2 branches covered.">                .filter(is -&gt; is.getInvalidRecords() &gt; 0)</span>
-<span class="fc bfc" id="L87" title="All 2 branches covered.">                .findAny().isEmpty();</span>
+<span class="fc" id="L79">        return !this.iterationsStats.stream()</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">                .filter(is -&gt; is.getInvalidRecords() &gt; 0)</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                .findAny().isEmpty();</span>
     }
 
     public boolean inputFileHadMissingInformation() {
-<span class="fc" id="L91">        return !this.iterationsStats.stream()</span>
-<span class="fc bfc" id="L92" title="All 2 branches covered.">                .filter(is -&gt; is.getMissingInformationRecords() &gt; 0)</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">                .findAny().isEmpty();</span>
+<span class="fc" id="L85">        return !this.iterationsStats.stream()</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                .filter(is -&gt; is.getMissingInformationRecords() &gt; 0)</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">                .findAny().isEmpty();</span>
     }
 
     public boolean iterationHadNoErrors() {
-<span class="fc bfc" id="L97" title="All 4 branches covered.">        return !(inputFileHadInvalidRecords() || inputFileHadMissingInformation());</span>
+<span class="fc bfc" id="L91" title="All 4 branches covered.">        return !(inputFileHadInvalidRecords() || inputFileHadMissingInformation());</span>
     }
 
-    @JsonGetter(&quot;numberOfIterations&quot;)
     public int numberOfIterations() {
-<span class="fc" id="L102">        return this.iterationsStats.size();</span>
+<span class="fc" id="L95">        return this.iterationsStats.size();</span>
     }
 
-    @JsonGetter(&quot;totalBytesProcessed&quot;)
     public long totalBytesProcessed() {
-<span class="fc" id="L107">        return this.iterationsStats.stream()</span>
-<span class="fc" id="L108">        .collect(Collectors.summingLong(IterationStatistics::getProcessedBytes));</span>
+<span class="fc" id="L99">        return this.iterationsStats.stream()</span>
+<span class="fc" id="L100">        .collect(Collectors.summingLong(IterationStatistics::getProcessedBytes));</span>
     }
 
-    @JsonGetter(&quot;totalRecordsProcessed&quot;)
     public int totalRecordsProcessed() {
-<span class="fc" id="L113">        return this.iterationsStats.stream()</span>
-<span class="fc" id="L114">        .collect(Collectors.summingInt(IterationStatistics::getProcessedRecords));</span>
+<span class="fc" id="L104">        return this.iterationsStats.stream()</span>
+<span class="fc" id="L105">        .collect(Collectors.summingInt(IterationStatistics::getProcessedRecords));</span>
     }
 
-    @JsonGetter(&quot;processingTime&quot;)
     public long processingTime() {
-<span class="fc" id="L119">        return this.iterationsStats.stream().mapToLong(IterationStatistics::getIterationDuration).max().getAsLong();</span>
+<span class="fc" id="L109">        return this.iterationsStats.stream().mapToLong(IterationStatistics::getIterationDuration).max().getAsLong();</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L124">        String returnValue = null;</span>
-<span class="fc" id="L125">        ObjectMapper mapper = new ObjectMapper();</span>
-        try {
-<span class="fc" id="L127">            returnValue = mapper.writeValueAsString(this);</span>
-<span class="pc" id="L128">        } catch (JsonProcessingException e) {</span>
-<span class="nc" id="L129">            e.printStackTrace();</span>
-        }
-<span class="fc" id="L131">        return returnValue;</span>
+<span class="nc" id="L114">        return this.asJson().toString();</span>
     }
-    // public JsonObject asJson() {
+    public JsonObject asJson() {
 
-    //     JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-    //     for(IterationStatistics is : this.iterationsStats) {
-    //         arrayBuilder.add(is.asJson());
-    //     }
-    //     return Json.createObjectBuilder()
-    //             .add(&quot;fileName&quot;, this.getFileName())
-    //             .add(&quot;recordName&quot;, this.getRecordName())
-    //             .add(&quot;processingDate&quot;, this.getProcessingDate().format(DateTimeFormatter.ISO_DATE))
-    //             .add(&quot;totalBytesProcessed&quot;, this.totalBytesProcessed())
-    //             .add(&quot;totalRecordsProcessed&quot;, this.totalRecordsProcessed())
-    //             .add(&quot;processingTimeMs&quot;, this.processingTime())
-    //             .add(&quot;iterationStatistics&quot;, arrayBuilder)
-    //             .build();
-    // }
+<span class="fc" id="L118">        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        for(IterationStatistics is : this.iterationsStats) {</span>
+<span class="fc" id="L120">            arrayBuilder.add(is.asJson());</span>
+<span class="fc" id="L121">        }</span>
+<span class="pc" id="L122">        return Json.createObjectBuilder()</span>
+<span class="nc" id="L123">                .add(&quot;fileName&quot;, this.getFileName())</span>
+<span class="nc" id="L124">                .add(&quot;recordName&quot;, this.getRecordName())</span>
+<span class="nc" id="L125">                .add(&quot;processingDate&quot;, this.getProcessingDate().format(DateTimeFormatter.ISO_DATE))</span>
+<span class="nc" id="L126">                .add(&quot;totalBytesProcessed&quot;, this.totalBytesProcessed())</span>
+<span class="nc" id="L127">                .add(&quot;totalRecordsProcessed&quot;, this.totalRecordsProcessed())</span>
+<span class="nc" id="L128">                .add(&quot;processingTimeMs&quot;, this.processingTime())</span>
+<span class="nc" id="L129">                .add(&quot;iterationStatistics&quot;, arrayBuilder)</span>
+<span class="nc" id="L130">                .build();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

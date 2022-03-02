@@ -9,6 +9,7 @@ public class BrokerConfiguration {
     private int publisherLingerMilliseconds;
     private int publisherBatchSize;
     private boolean autoRegisterSchemas;
+    private String recordKey;
     private String schemaRegistryUrl;
     private String keySerializer;
     private String valueSerializer;
@@ -81,6 +82,14 @@ public class BrokerConfiguration {
 
     public void setAutoRegisterSchemas(boolean autoRegisterSchemas) {
         this.autoRegisterSchemas = autoRegisterSchemas;
+    }
+
+    public String getRecordKey() {
+        return this.recordKey;
+    }
+
+    public void setRecordKey(String recordKey) {
+        this.recordKey = recordKey;
     }
 
     public String getSchemaRegistryUrl() {

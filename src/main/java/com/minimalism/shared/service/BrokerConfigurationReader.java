@@ -50,6 +50,15 @@ public class BrokerConfigurationReader {
         return Boolean.parseBoolean(this.kafkaProperties.getProperty("auto.register.schemas"));
     }
 
+    public String getRecordKey() {
+        String key = this.kafkaProperties.getProperty("record.key");
+        if(key == null || key.isEmpty() || key.isBlank()) {
+            return "none";
+        } else {
+            return key;
+        }
+    }
+
     public String getSchemaRegistryUrl() {
         return this.kafkaProperties.getProperty("schema.registry.url");
     }
@@ -92,6 +101,7 @@ public class BrokerConfigurationReader {
         returnValue.setTopic(this.getTopic());
         returnValue.setPartitions(this.getPartitionsCount());
         returnValue.setAutoRegisterSchemas(this.autoRegisterSchemas());
+        returnValue.setRecordKey(this.getRecordKey());
         returnValue.setPublisherBatchSize(this.getPublisherBatchSize());
         returnValue.setPublisherBufferMemory(this.getPublisherBufferMemorySize());
         returnValue.setPublisherLingerMilliseconds(this.getPublisherLingerMilliseconds());
