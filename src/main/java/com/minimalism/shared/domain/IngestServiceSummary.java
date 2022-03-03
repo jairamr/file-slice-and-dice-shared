@@ -106,7 +106,7 @@ public class IngestServiceSummary {
     }
 
     public long processingTime() {
-        return this.iterationsStats.stream().mapToLong(IterationStatistics::getIterationDuration).max().getAsLong();
+        return this.iterationsStats.stream().mapToLong(IterationStatistics::getIterationDuration).sum();
     }
 
     @Override
