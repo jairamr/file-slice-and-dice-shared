@@ -9,49 +9,61 @@ import com.minimalism.shared.exceptions.NoSuchPathException;
 public class BrokerConfigurationReader {
     private String clientName;
     private String recordTypeName;
-    private Properties kafkaProperties;
+    private Properties brokerProperties;
     
-    public BrokerConfigurationReader(String clientName, String recordTypeName) throws NoSuchPathException, IOException {
-        this.kafkaProperties = new Properties();
+    public BrokerConfigurationReader(String clientName, String recordTypeName, String brokerTypeName) throws NoSuchPathException, IOException {
+        this.brokerProperties = new Properties();
         this.clientName = clientName;
         this.recordTypeName = recordTypeName;
-        loadKafkaProperties();
+        loadBrokerProperties(brokerTypeName);
     }
 
     public String getBootsatrapServers() {
-        return kafkaProperties.getProperty("bootstrap_servers");
+        return brokerProperties.getProperty("bootstrap_servers");
     }
 
     public String getTopic() {
-        return kafkaProperties.getProperty("topic");
+        return brokerProperties.getProperty("topic");
+    }
+
+    public String getTopicKey() {
+        return brokerProperties.getProperty("topic.key");
+    }
+
+    public String getErrorsTopic() {
+        return brokerProperties.getProperty("errors.topic");
+    }
+
+    public String getErrorsTopicKey() {
+        return this.brokerProperties.getProperty("errors.topic.key");
     }
 
     public int getPartitionsCount() {
-        return Integer.parseInt(this.kafkaProperties.getProperty("topic_partitions"));
+        return Integer.parseInt(this.brokerProperties.getProperty("topic_partitions"));
     }
 
     public long getPublisherBufferMemorySize() {
-        return Long.parseLong(this.kafkaProperties.getProperty("publisher.buffer.memory"));
+        return Long.parseLong(this.brokerProperties.getProperty("publisher.buffer.memory"));
     }
 
     public int getPublisherRetriesCount() {
-        return Integer.parseInt(this.kafkaProperties.getProperty("publisher.retries"));
+        return Integer.parseInt(this.brokerProperties.getProperty("publisher.retries"));
     }
 
     public int getPublisherLingerMilliseconds() {
-        return Integer.parseInt(this.kafkaProperties.getProperty("publisher.linger.milliseconds"));
+        return Integer.parseInt(this.brokerProperties.getProperty("publisher.linger.milliseconds"));
     }
 
     public int getPublisherBatchSize() {
-        return Integer.parseInt(this.kafkaProperties.getProperty("publisher.batch.size"));
+        return Integer.parseInt(this.brokerProperties.getProperty("publisher.batch.size"));
     }
 
     public boolean autoRegisterSchemas() {
-        return Boolean.parseBoolean(this.kafkaProperties.getProperty("auto.register.schemas"));
+        return Boolean.parseBoolean(this.brokerProperties.getProperty("auto.register.schemas"));
     }
 
     public String getRecordKey() {
-        String key = this.kafkaProperties.getProperty("record.key");
+        String key = this.brokerProperties.getProperty("record.key");
         if(key == null || key.isEmpty() || key.isBlank()) {
             return "none";
         } else {
@@ -60,45 +72,48 @@ public class BrokerConfigurationReader {
     }
 
     public String getSchemaRegistryUrl() {
-        return this.kafkaProperties.getProperty("schema.registry.url");
+        return this.brokerProperties.getProperty("schema.registry.url");
     }
 
     public String getKeySerializerName() {
-        return this.kafkaProperties.getProperty("key.serializer");
+        return this.brokerProperties.getProperty("key.serializer");
     }
 
     public String getValueSerializerName() {
-        return this.kafkaProperties.getProperty("value.serializer");
+        return this.brokerProperties.getProperty("value.serializer");
     }
 
     public String getConsumerGroupId() {
-        return this.kafkaProperties.getProperty("consumer.group.id");
+        return this.brokerProperties.getProperty("consumer.group.id");
     }
 
     public boolean getConsumerAutoCommitFlag() {
-        return this.kafkaProperties.getProperty("consumer.enable.auto.commit").equalsIgnoreCase("true");
+        return this.brokerProperties.getProperty("consumer.enable.auto.commit").equalsIgnoreCase("true");
     }
 
     public String getConsumerDefaultOffsetMode() {
-        return this.kafkaProperties.getProperty("consumer.auto.offset.reset");
+        return this.brokerProperties.getProperty("consumer.auto.offset.reset");
     }
 
     public int getConsumerPollingInterval() {
-        return Integer.parseInt(this.kafkaProperties.getProperty("consumer.poll.duration.milliseconds"));
+        return Integer.parseInt(this.brokerProperties.getProperty("consumer.poll.duration.milliseconds"));
     }
 
     public String getKeyDeserializer() {
-        return this.kafkaProperties.getProperty("key.deserializer");
+        return this.brokerProperties.getProperty("key.deserializer");
     }
 
     public String getValueDeserializer() {
-        return this.kafkaProperties.getProperty("value.deserializer");
+        return this.brokerProperties.getProperty("value.deserializer");
     }
 
     public BrokerConfiguration getBrokerConfiguration() {
         var returnValue = new BrokerConfiguration();
         returnValue.setBootstrapServers(this.getBootsatrapServers());
         returnValue.setTopic(this.getTopic());
+        returnValue.setErrorsTopic(this.getErrorsTopic());
+        returnValue.setTopicKey(this.getTopicKey());
+        returnValue.setErrorsTopicKey(this.getErrorsTopicKey());
         returnValue.setPartitions(this.getPartitionsCount());
         returnValue.setAutoRegisterSchemas(this.autoRegisterSchemas());
         returnValue.setRecordKey(this.getRecordKey());
@@ -119,14 +134,14 @@ public class BrokerConfigurationReader {
         return returnValue;
     }
 
-    private void loadKafkaProperties() throws NoSuchPathException, IOException {
-        var kafkaConfigFilePath = FileSystemConfigHelper.getInstance()
+    private void loadBrokerProperties(String brokerTypeName) throws NoSuchPathException, IOException {
+        var brokerConfigFilePath = FileSystemConfigHelper.getInstance()
                 .getServiceOutputDataDefinitionDirectory(this.clientName)
-                .resolve("kafka".concat("_")
+                .resolve(brokerTypeName.toLowerCase().concat("_")
                             .concat(this.recordTypeName.toLowerCase())
                             .concat(".properties"));
-        try(var kafkaPropertiesFile = new FileReader(kafkaConfigFilePath.toString())) {
-            kafkaProperties.load(kafkaPropertiesFile);
+        try(var brokerPropertiesFile = new FileReader(brokerConfigFilePath.toString())) {
+            brokerProperties.load(brokerPropertiesFile);
         }
     }
 }

@@ -17,7 +17,7 @@ class BrokerConfigurationTests {
     static BrokerConfiguration init() {
         BrokerConfiguration brokerConfiguration = null;
         try {
-            BrokerConfigurationReader reader = new BrokerConfigurationReader("client_1", "hrdata");
+            BrokerConfigurationReader reader = new BrokerConfigurationReader("client_1", "hrdata", "kafka");
             brokerConfiguration = reader.getBrokerConfiguration();
         } catch (NoSuchPathException | IOException e) {
             e.printStackTrace();

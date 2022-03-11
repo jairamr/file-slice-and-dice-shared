@@ -3,6 +3,9 @@ package com.minimalism.shared.service;
 public class BrokerConfiguration {
     private String bootstrapServers;
     private String topic;
+    private String topicKey;
+    private String errorsTopic;
+    private String errorsTopicKey;
     private int partitions;
     private long publisherBufferMemory;
     private int publisherRetries;
@@ -35,6 +38,30 @@ public class BrokerConfiguration {
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
+    public String getTopiKey() {
+        return topicKey;
+    }
+
+    public void setTopicKey(String topicKey) {
+        this.topicKey = topicKey;
+    }
+
+    public String getErrorsTopic() {
+        return errorsTopic;
+    }
+    public String getErrorsTopicKey() {
+        return errorsTopicKey;
+    }
+
+    public void setErrorsTopicKey(String errorsTopicKey) {
+        this.errorsTopicKey = errorsTopicKey;
+    }
+    public void setErrorsTopic(String errorsTopic) {
+        this.errorsTopic = errorsTopic;
+    }
+
+
 
     public int getPartitions() {
         return partitions;
