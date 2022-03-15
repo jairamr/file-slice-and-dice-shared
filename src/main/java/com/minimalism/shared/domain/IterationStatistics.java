@@ -141,6 +141,10 @@ public class IterationStatistics {
         this.processedBytes = processedBytes;
     }
 
+    public void addProcessedBytes(int additionalBytes) {
+        this.processedBytes += additionalBytes;
+    }
+
     public int getProcessedRecords() {
         return processedRecords;
     }
