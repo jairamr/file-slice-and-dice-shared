@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.minimalism.shared.domain.IngestServiceSummaryTests
--------------------------------------------------------------------------------
-Tests run: 24, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.119 s <<< FAILURE! - in com.minimalism.shared.domain.IngestServiceSummaryTests
-com.minimalism.shared.domain.IngestServiceSummaryTests.testToString  Time elapsed: 0.028 s  <<< ERROR!
-java.lang.NullPointerException: Value in JsonObjects name/value pair cannot be null
-	at com.minimalism.shared.domain.IngestServiceSummaryTests.testToString(IngestServiceSummaryTests.java:261)
-
